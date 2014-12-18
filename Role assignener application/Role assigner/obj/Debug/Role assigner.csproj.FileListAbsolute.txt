@@ -1,0 +1,19 @@
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\bin\Debug\Role assigner.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\bin\Debug\Role assigner.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\bin\Debug\Role assigner.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role assigner.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role_assigner.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role_assigner.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role assigner.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role assigner.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Role assigner\Role assigner\obj\Debug\Role assigner.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\bin\Debug\Role assigner.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\bin\Debug\Role assigner.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\bin\Debug\Role assigner.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\bin\Debug\MySql.Web.v20.dll
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role_assigner.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role_assigner.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role assigner.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role assigner.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role assigner.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Role assignener application\Role assigner\obj\Debug\Role assigner.csprojResolveAssemblyReference.cache

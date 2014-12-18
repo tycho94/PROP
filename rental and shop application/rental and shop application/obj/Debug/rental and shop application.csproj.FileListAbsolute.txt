@@ -1,0 +1,9 @@
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\bin\Debug\rental and shop application.exe.config
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\bin\Debug\rental and shop application.exe
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\bin\Debug\rental and shop application.pdb
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.csprojResolveAssemblyReference.cache
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental_and_shop_application.Shop.resources
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental_and_shop_application.Properties.Resources.resources
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.csproj.GenerateResource.Cache
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.exe
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.pdb
