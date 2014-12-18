@@ -8,3 +8,6 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Campsite app
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Campsite application\Campsite application\bin\Debug\Campsite application.pdb
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Campsite application\Campsite application\obj\Debug\Campsite application.exe
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Campsite application\Campsite application\obj\Debug\Campsite application.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\bin\Debug\Campsite application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.pdb

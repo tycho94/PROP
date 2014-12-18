@@ -7,3 +7,6 @@
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Rental App\Rental App\bin\Debug\Rental App.pdb
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Rental App\Rental App\obj\Debug\Rental App.exe
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Rental App\Rental App\obj\Debug\Rental App.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\bin\Debug\Rental App.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental App.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental App.pdb

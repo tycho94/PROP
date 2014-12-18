@@ -14,8 +14,9 @@ namespace Role_assigner
     public partial class Form1 : Form
     {
         List<String> list = new List<String>();
+
         DatabaseConnection data = new DatabaseConnection();
-        
+
 
         public Form1()
         {
@@ -24,8 +25,10 @@ namespace Role_assigner
             for (int i = 0; i < list.Count(); i++)
             { empNameDropdown.Items.Add(list[i]); }
             list = data.LoadRoles();
-            for (int i = 0; i < list.Count(); i++)
-            { roleDropdown.Items.Add(list[i]); }
+            roleDropdown.Items.Add("Bouncer");
+            roleDropdown.Items.Add("Cashier");
+            roleDropdown.Items.Add("Manager");
+            roleDropdown.Items.Add("Owner");
             Status.Text = data.Version();
         }
 
@@ -36,6 +39,7 @@ namespace Role_assigner
                 if (data.SetRoles((((String)empNameDropdown.SelectedItem).ToString()), (((String)roleDropdown.SelectedItem).ToString())))
                 {
                     Status.Text = "Role set!";
+                    lbRole.Text = "Current job: " + (((String)roleDropdown.SelectedItem).ToString());
                 }
                 else
                 {
@@ -56,7 +60,8 @@ namespace Role_assigner
 
             //listBox1.DataSource = list;
             lbEmpNr.Text = "Employee #: " + list[0];
-            lbDob.Text = "DOB: " + list[1];
+            string trim = "DOB: " + list[1];
+            lbDob.Text = trim.Trim('0', ':');
             lbRole.Text = "Current job: " + list[2];
 
         }

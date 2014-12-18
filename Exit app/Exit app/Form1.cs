@@ -27,7 +27,7 @@ namespace Exit_app
                 Reader.Tag += new TagEventHandler(Leaving);
                 Reader.open();
                 Reader.waitForAttachment(3000);
-                Reader.Antenna = true;
+                Reader.Antenna = true; 
                 Reader.LED = true;
             }
             catch (PhidgetException)
