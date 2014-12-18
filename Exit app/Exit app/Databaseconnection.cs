@@ -8,7 +8,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Data;
 
-namespace Role_assigner
+namespace Exit_app
 {
     class DatabaseConnection
     {
@@ -18,14 +18,8 @@ namespace Role_assigner
                                         "PASSWORD=HdPvIjPpDJ;";  // your password
 
         private string getbalance = "SELECT BALANCE FROM VISITOR WHERE RFIDNR =@RFID";
-        public Int32 GetBalance(string tag)
-        {
-            int nbr;
-            cmd = new MySqlCommand(getbalance, con);
-            cmd.Parameters.AddWithValue("@RFID", tag);
-            nbr = Convert.ToInt32(cmd.ExecuteScalar());
-            return 0;
-        }
+
+        private string getrented = "SELECT "
 
         MySqlConnection con = null;
         MySqlCommand cmd = null;
@@ -45,7 +39,20 @@ namespace Role_assigner
             return version;
         }
 
+        public Int32 GetBalance(string tag)
+        {
+            int nbr;
+            cmd = new MySqlCommand(getbalance, con);
+            cmd.Parameters.AddWithValue("@RFID", tag);
+            nbr = Convert.ToInt32(cmd.ExecuteScalar());
+            return 0;
+        }
 
+        public String GetRented(string tag)
+        {
+            string rented;
+            cmd = - new MySqlCommand
+        }
         public void Disconnect()
         {
             con.Close();

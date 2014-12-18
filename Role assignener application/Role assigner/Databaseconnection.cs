@@ -59,7 +59,7 @@ namespace Role_assigner
             return list;
         }
 
-        public List<String> LoadRoles()
+        /*public List<String> LoadRoles()
         {
             list = new List<String>();
             cmd = new MySqlCommand("SELECT DISTINCT JOB FROM EMPLOYEE", con);
@@ -72,7 +72,7 @@ namespace Role_assigner
             rdr.Close();
             return list;
 
-        }
+        }*/
 
         public Boolean SetRoles(string name, string role)
         {

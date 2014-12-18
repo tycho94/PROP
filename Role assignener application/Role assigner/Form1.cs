@@ -24,7 +24,7 @@ namespace Role_assigner
             list = data.LoadEmployees();
             for (int i = 0; i < list.Count(); i++)
             { empNameDropdown.Items.Add(list[i]); }
-            list = data.LoadRoles();
+            //list = data.LoadRoles();
             roleDropdown.Items.Add("Bouncer");
             roleDropdown.Items.Add("Cashier");
             roleDropdown.Items.Add("Manager");
@@ -63,7 +63,7 @@ namespace Role_assigner
             string trim = "DOB: " + list[1];
             lbDob.Text = trim.Trim('0', ':');
             lbRole.Text = "Current job: " + list[2];
-
+            
         }
     }
 }

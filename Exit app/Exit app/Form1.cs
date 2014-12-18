@@ -15,11 +15,13 @@ namespace Exit_app
     public partial class Form1 : Form
     {
         private RFID Reader;
-        ExitClient current = new ExitClient("2800b39b49");
+        //ExitClient current = new ExitClient("2800b39b49");
+        DatabaseConnection data = new DatabaseConnection();
+        
         public Form1()
         {
             InitializeComponent();
-
+            
             try
             {
                 Reader = new RFID();
@@ -33,13 +35,13 @@ namespace Exit_app
             catch (PhidgetException)
             {
                 MessageBox.Show("RFID reader not found. \nExiting program.");
-                Environment.Exit(1);
+                //Environment.Exit(1);
             }
         }
 
         public void Leaving(object sender, TagEventArgs e)
         {
-            moneylbl.Text = "Money left on card: " + current.Money;
+            moneylbl.Text = "Money left on card: ";
         }
     }
 }
