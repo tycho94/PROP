@@ -123,7 +123,7 @@
             this.Controls.Add(this.roleDropdown);
             this.Controls.Add(this.btAssign);
             this.Name = "Form1";
-            this.Text = "Role Assigner App";
+            this.Text = "Role Assigner";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

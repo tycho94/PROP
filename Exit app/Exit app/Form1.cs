@@ -17,20 +17,22 @@ namespace Exit_app
         private RFID Reader;
         //ExitClient current = new ExitClient("2800b39b49");
         DatabaseConnection data = new DatabaseConnection();
-        
+
         public Form1()
         {
             InitializeComponent();
-            
+            label3.Visible = false;
+
             try
             {
                 Reader = new RFID();
                 //Reader.Attach += new AttachEventHandler(ReaderAttached);
-                Reader.Tag += new TagEventHandler(Leaving);
                 Reader.open();
                 Reader.waitForAttachment(3000);
-                Reader.Antenna = true; 
+                Reader.Antenna = true;
                 Reader.LED = true;
+                Reader.Tag += new TagEventHandler(Leaving);
+                
             }
             catch (PhidgetException)
             {
@@ -38,10 +40,20 @@ namespace Exit_app
                 //Environment.Exit(1);
             }
         }
+        
 
         public void Leaving(object sender, TagEventArgs e)
         {
             moneylbl.Text = "Money left on card: " + data.GetBalance(e.Tag).ToString();
+
+            if(data.GetRented(e.Tag) == true)
+            {
+                label3.Visible = true;
+            }
+            else
+            {
+                label3.Visible = false;
+            }
         }
     }
 }
