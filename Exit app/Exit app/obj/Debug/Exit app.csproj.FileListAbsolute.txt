@@ -8,11 +8,11 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Exit app\Exi
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Exit app\Exit app\obj\Debug\Exit app.exe
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Exit app\Exit app\obj\Debug\Exit app.pdb
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\bin\Debug\Exit app.exe.config
-C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.exe
-C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.pdb
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\bin\Debug\Exit app.exe
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\bin\Debug\Exit app.pdb
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.csprojResolveAssemblyReference.cache
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit_app.Form1.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit_app.Properties.Resources.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Exit app\Exit app\obj\Debug\Exit app.pdb
