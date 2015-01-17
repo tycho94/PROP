@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.moneylbl = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -57,22 +58,33 @@
             // 
             this.moneylbl.AutoSize = true;
             this.moneylbl.Font = new System.Drawing.Font("Broadway", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moneylbl.Location = new System.Drawing.Point(12, 165);
+            this.moneylbl.Location = new System.Drawing.Point(12, 125);
             this.moneylbl.Name = "moneylbl";
             this.moneylbl.Size = new System.Drawing.Size(208, 21);
             this.moneylbl.TabIndex = 2;
             this.moneylbl.Text = "Money left on card: ";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Broadway", 18.25F);
+            this.label3.Location = new System.Drawing.Point(-1, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(480, 28);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Hand in your items before leaving!";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 212);
+            this.ClientSize = new System.Drawing.Size(482, 204);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.moneylbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Exiting Event";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,6 +95,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label moneylbl;
+        private System.Windows.Forms.Label label3;
     }
 }
 

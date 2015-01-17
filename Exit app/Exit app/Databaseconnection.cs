@@ -17,14 +17,13 @@ namespace Exit_app
                                         "UID=dbi289514;" + // your user id
                                         "PASSWORD=HdPvIjPpDJ;";  // your password
 
-        private string getbalance = "SELECT BALANCE FROM VISITOR WHERE RFIDNR =@RFID";
+        private string getbalance = "SELECT BALANCE FROM VISITOR WHERE RFID = @RFID";
 
-        private string getrented = "SELECT ";
+        private string getrented = "SELECT RENTAL_ID FROM RENTEDITEM  where RFID = @RFID";
 
-        MySqlConnection con = null;
-        MySqlCommand cmd = null;
-        MySqlDataReader rdr = null;
-        List<String> list;
+        MySqlConnection con;
+        MySqlCommand cmd;
+        MySqlDataReader rdr;
         public DatabaseConnection()
         {
             con = new MySqlConnection(connectionInfo);
@@ -41,19 +40,42 @@ namespace Exit_app
 
         public Int32 GetBalance(string tag)
         {
-            int nbr;
+            int nbr = 0;
             cmd = new MySqlCommand(getbalance, con);
             cmd.Parameters.AddWithValue("@RFID", tag);
-            nbr = Convert.ToInt32(cmd.ExecuteScalar());
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                nbr = rdr.GetInt32(0);
+            }
+            rdr.Close();
             return nbr;
         }
 
-        public String GetRented(string tag)
+        public Boolean GetRented(string tag)
         {
-            string rented;
-            cmd = new MySqlCommand(getrented);
+            int rented = -1;
+            try
+            {
+                cmd = new MySqlCommand(getrented, con);
+                cmd.Parameters.AddWithValue("@RFID", tag);
+                rdr = cmd.ExecuteReader();
 
-            return "a";
+                while (rdr.Read())
+                {
+                    rented = rdr.GetInt32(0);
+                }
+                rdr.Close();
+            }
+            catch
+            {
+                rented = -1;
+            }
+
+            if (rented < 0)
+                return false;
+            else
+                return true;
         }
         public void Disconnect()
         {
