@@ -19,7 +19,7 @@ namespace Exit_app
 
         private string getbalance = "SELECT BALANCE FROM VISITOR WHERE RFIDNR =@RFID";
 
-        private string getrented = "SELECT "
+        private string getrented = "SELECT ";
 
         MySqlConnection con = null;
         MySqlCommand cmd = null;
@@ -45,13 +45,15 @@ namespace Exit_app
             cmd = new MySqlCommand(getbalance, con);
             cmd.Parameters.AddWithValue("@RFID", tag);
             nbr = Convert.ToInt32(cmd.ExecuteScalar());
-            return 0;
+            return nbr;
         }
 
         public String GetRented(string tag)
         {
             string rented;
-            cmd = - new MySqlCommand
+            cmd = new MySqlCommand(getrented);
+
+            return "a";
         }
         public void Disconnect()
         {

@@ -41,7 +41,7 @@ namespace Exit_app
 
         public void Leaving(object sender, TagEventArgs e)
         {
-            moneylbl.Text = "Money left on card: ";
+            moneylbl.Text = "Money left on card: " + data.GetBalance(e.Tag).ToString();
         }
     }
 }
