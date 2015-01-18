@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 \\vmware-host\shared folders\documents\visual studio 2013\Projects\entrance application\entrance application\bin\Debug\entrance application.exe.config
 C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\entrance application\entrance application\bin\Debug\entrance application.exe.config
 C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\bin\Debug\entrance application.exe.config
@@ -18,3 +19,19 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Entrance application\entrance a
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Entrance application\entrance application\obj\Debug\entrance application.csproj.GenerateResource.Cache
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Entrance application\entrance application\bin\Debug\entrance application.exe
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Entrance application\entrance application\bin\Debug\entrance application.pdb
+=======
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\entrance application\entrance application\bin\Debug\entrance application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\entrance application\entrance application\bin\Debug\entrance application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\bin\Debug\entrance application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance application.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance_application.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance_application.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance application.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\bin\Debug\entrance application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\bin\Debug\entrance application.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\entrance application\entrance application\obj\Debug\entrance application.pdb
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\entrance application\entrance application\bin\Debug\entrance application.exe.config
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\entrance application\entrance application\obj\Debug\entrance application.exe
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\entrance application\entrance application\obj\Debug\entrance application.pdb
+>>>>>>> Stashed changes
