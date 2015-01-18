@@ -47,14 +47,14 @@ namespace Rental_App
         }
 
         //constructor
-        public Item(string name, double price, double deposit ,int totalLeft, string img,int id)
+        public Item(string name, double price, double deposit ,int totalLeft ,int id)
         {
             this.name = name;
             this.price = price;
             this.deposit = deposit;
             this.totalLeft = totalLeft;
             
-            this.image = img;
+            //this.image = img;
             this.ID = id;
            
         }

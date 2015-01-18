@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Rental_App
+namespace Top_Up_app
 {
     static class Program
     {

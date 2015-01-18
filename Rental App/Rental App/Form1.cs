@@ -18,6 +18,7 @@ namespace Rental_App
         
         object O;
 
+        DatabaseConnection data = new DatabaseConnection();
         List<Item> bought = new List<Item>();
         Item product;
          
@@ -31,8 +32,13 @@ namespace Rental_App
 
         private void CreateDummyData() 
         {
-            rent.AddItem("ipad", 40, 10, 100,"ipad", 21);
-            rent.AddItem("go-pro", 30, 10, 80, "gopro", 12);
+            //rent.AddItem("ipad", , 10, 100,"ipad", 21);
+            //rent.AddItem("go-pro", 30, 10, 80, "gopro", 12);
+
+            foreach (Item i in data.LoadItemInfo())
+            {
+                rent.AddItem(i.Name, i.Price, i.Deposit, i.TotalLeft, i.iD);
+            }
  
         }
 
@@ -104,7 +110,7 @@ namespace Rental_App
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
             labelID.Text = "ID Number: " + product.iD.ToString();
 
-            O = Properties.Resources.ResourceManager.GetObject(product.Image); 
+            O = Properties.Resources.ResourceManager.GetObject(product.Name); 
             pictureBoxBIG.Image = (Image)O;
         }
 
@@ -130,8 +136,13 @@ namespace Rental_App
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
             labelID.Text = "ID Number: " + product.iD.ToString();
 
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            O = Properties.Resources.ResourceManager.GetObject(product.Name);
             pictureBoxBIG.Image = (Image)O;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

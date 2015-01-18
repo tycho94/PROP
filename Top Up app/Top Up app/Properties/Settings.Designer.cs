@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Rental_App.Properties
+namespace Top_Up_app.Properties
 {
 
 
