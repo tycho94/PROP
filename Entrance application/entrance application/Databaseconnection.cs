@@ -8,7 +8,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Data;
 
-namespace Exit_app
+namespace entrance_application
 {
     class DatabaseConnection
     {
@@ -17,13 +17,14 @@ namespace Exit_app
                                         "UID=dbi289514;" + // your user id
                                         "PASSWORD=HdPvIjPpDJ;";  // your password
 
-        private string getbalance = "SELECT BALANCE FROM VISITOR WHERE RFID = @RFID";
-
-        private string getrented = "SELECT RENTAL_ID FROM RENTEDITEM  where RFID = @RFID";
-
-        private string leave = "UPDATE VISITOR SET ACTIVE = 0 WHERE RFID = @RFID";
-
         private string status = "SELECT ACTIVE FROM VISITOR WHERE RFID = @RFID";
+
+        private string name = "SELECT LAST_NAME FROM VISITOR WHERE RFID = @RFID";
+
+        private string pass = "SELECT PASSWORD FROM access_pass WHERE Security_lvl = 2 OR Security_lvl = 3";
+
+        private string changestatus = "UPDATE VISITOR SET ACTIVE = @STATUS WHERE RFID = @RFID";
+
 
         MySqlConnection con;
         MySqlCommand cmd;
@@ -42,20 +43,6 @@ namespace Exit_app
             return version;
         }
 
-        public Int32 GetBalance(string tag)
-        {
-            int nbr = 0;
-            cmd = new MySqlCommand(getbalance, con);
-            cmd.Parameters.AddWithValue("@RFID", tag);
-            rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                nbr = rdr.GetInt32(0);
-            }
-            rdr.Close();
-            return nbr;
-        }
-
         public Int32 GetStatus(string tag)
         {
             int nbr = 0;
@@ -70,37 +57,41 @@ namespace Exit_app
             return nbr;
         }
 
-        public Boolean GetRented(string tag)
+        public Boolean GetPass(string tag, string pass)
         {
-            int rented = -1;
-            try
+            bool n = false;
+            cmd = new MySqlCommand(this.pass, con);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
             {
-                cmd = new MySqlCommand(getrented, con);
-                cmd.Parameters.AddWithValue("@RFID", tag);
-                rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    rented = rdr.GetInt32(0);
-                }
-                rdr.Close();
+                if (pass == rdr.GetString(0))
+                    n = true;
             }
-            catch
-            {
-                rented = -1;
-            }
-
-            if (rented < 0)
-                return false;
-            else
-                return true;
+            rdr.Close();
+            return n;
         }
 
-        public void leaving(string tag)
+        public string GetName(string tag)
         {
-            cmd = new MySqlCommand(leave, con);
+            string name = "";
+            cmd = new MySqlCommand(this.name, con);
+            cmd.Parameters.AddWithValue("@RFID", tag);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                name = rdr.GetString(0);
+            }
+            rdr.Close();
+            return name;
+        }
+
+        public void ChangeStatus(string tag, int status)
+        {
+            cmd = new MySqlCommand(changestatus, con);
+            cmd.Parameters.AddWithValue("@STATUS", status);
             cmd.Parameters.AddWithValue("@RFID", tag);
             cmd.ExecuteNonQuery();
+
         }
         public void Disconnect()
         {

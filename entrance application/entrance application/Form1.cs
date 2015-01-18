@@ -12,13 +12,13 @@ using Phidgets.Events;
 
 namespace entrance_application
 {
+
     public partial class Form1 : Form
     {
         private RFID Reader;
-        Admin rj;
-        EnterClient current;
+        DatabaseConnection data = new DatabaseConnection();
+        string tag;
         Timer checkup = new Timer();
-
 
 
         public Form1()
@@ -33,7 +33,6 @@ namespace entrance_application
                 Reader.waitForAttachment(3000);
                 Reader.Antenna = true;
                 Reader.LED = true;
-                current = new EnterClient("2800b39b49");
             }
             catch (PhidgetException)
             {
@@ -45,53 +44,61 @@ namespace entrance_application
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+
             try
             {
-                rj = new Admin();
-                if (rj.CheckPass(tbPass.Text) == true)
+
+                if (data.GetPass(tag, tbPass.Text))
                 {
-                    current.ChangeStatus(1);
+                    data.ChangeStatus(tag, 0);
+
+                    resetui();
                 }
                 else
-                    MessageBox.Show("Wrong password!");
+                    MessageBox.Show("Wrong pass");
 
+                
             }
-
             catch
             {
                 MessageBox.Show("Wait for RFID scan");
             }
-
-            resetui();
         }
 
 
         private void Entering(object sender, TagEventArgs e)
         {
-
-            if (current.Entering(e.Tag) == 1)
+            try
             {
-                //db function
-                tbStatus.BackColor = Color.LightGreen;
-                tbStatus.Text = "Allowed";
-                tbName.Text = current.Username;
+                tag = e.Tag;
+                if (data.GetStatus(e.Tag) == 0)
+                {
+                    //db function
+                    tbStatus.BackColor = Color.LightGreen;
+                    tbStatus.Text = "Allowed";
+                    tbName.Text = data.GetName(e.Tag);
+                }
+                if (data.GetStatus(e.Tag) == 1)
+                {
+                    //db function
+                    tbStatus.BackColor = Color.Red;
+                    tbStatus.Text = "Entered";
+                    tbName.Text = data.GetName(e.Tag);
+                    btnEnter.Enabled = false;
+                }
+                if (data.GetStatus(e.Tag) == 2)
+                {
+                    tbStatus.BackColor = Color.Red;
+                    //db function
+                    tbStatus.Text = "Banned!";
+                    tbName.Text = data.GetName(e.Tag);
+                    btnEnter.Enabled = false;
+                    btnBan.Enabled = false;
+                }
             }
-            if (current.Entering(e.Tag) == 2)
+            catch
             {
-                //db function
-                tbStatus.BackColor = Color.Red;
-                tbStatus.Text = "Entered";
-                tbName.Text = current.Username;
-                btnEnter.Enabled = false;
-            }
-            if (current.Entering(e.Tag) == 3)
-            {
-                tbStatus.BackColor = Color.Red;
-                //db function
-                tbStatus.Text = "Banned!";
-                tbName.Text = current.Username;
-                btnEnter.Enabled = false;
-                btnBan.Enabled = false;
+                MessageBox.Show("Scanning failed");
             }
         }
 
@@ -100,8 +107,8 @@ namespace entrance_application
             try
             {
 
-                current.ChangeStatus(2);
-                System.Threading.Thread.Sleep(2000);
+                data.ChangeStatus(tag, 1);
+                System.Threading.Thread.Sleep(1000);
                 resetui();
             }
             catch
@@ -115,7 +122,8 @@ namespace entrance_application
             try
             {
 
-                current.ChangeStatus(3);
+                data.ChangeStatus(tag, 2);
+                System.Threading.Thread.Sleep(1000);
                 resetui();
             }
             catch

@@ -1,0 +1,2 @@
+\\vmware-host\shared folders\documents\visual studio 2013\Projects\Admin application\Admin application\bin\Debug\Admin application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Admin application\Admin application\bin\Debug\Admin application.exe.config
