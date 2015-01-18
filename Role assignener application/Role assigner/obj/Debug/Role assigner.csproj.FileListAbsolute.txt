@@ -27,6 +27,3 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Role assignener application\Rol
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Role assignener application\Role assigner\obj\Debug\Role_assigner.Form1.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Role assignener application\Role assigner\obj\Debug\Role_assigner.Properties.Resources.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Role assignener application\Role assigner\obj\Debug\Role assigner.csproj.GenerateResource.Cache
-\\vmware-host\Shared Folders\Desktop\ProP\PROP\Role assignener application\Role assigner\bin\Debug\Role assigner.exe.config
-\\vmware-host\Shared Folders\Desktop\ProP\PROP\Role assignener application\Role assigner\obj\Debug\Role assigner.exe
-\\vmware-host\Shared Folders\Desktop\ProP\PROP\Role assignener application\Role assigner\obj\Debug\Role assigner.pdb
