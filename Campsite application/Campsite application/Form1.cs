@@ -47,17 +47,12 @@ namespace Campsite_application
             if (data.Reserve(tag, spot))
             {
                Status.Text = "Succesfull reservation";
+               lblSite.Text = "Site number: " + spot.ToString();
             }
             else
             {
                 Status.Text = "Something went wrong";
-            }
-
-            if (data.GetSite(tag) != -1)
-                lblSite.Text = "Site number: " + data.GetSite(tag).ToString();
-            else
-                lblSite.Visible = false;
-            
+            }            
         }
 
         
