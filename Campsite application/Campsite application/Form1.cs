@@ -17,6 +17,7 @@ namespace Campsite_application
         private RFID Reader;
         DatabaseConnection data = new DatabaseConnection();
         string tag;
+        int spot;
         public Form1()
         {
             InitializeComponent();
@@ -39,23 +40,18 @@ namespace Campsite_application
             lbFreeSites.DataSource = data.ListSites();
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void showBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void reserveBtn_Click(object sender, EventArgs e)
         {
-
+            data.Reserve(tag, spot);
         }
+
+        
 
         private void Scan(object sender, TagEventArgs e)
         {
+            tag = e.Tag;
+            spot = Convert.ToInt32(lbFreeSites.SelectedItem);
             lblName.Text = "Name: " + data.GetName(e.Tag);
             lblMoney.Text = "Money: " + data.GetMoney(e.Tag).ToString();
             lblSite.Visible = true;
@@ -64,6 +60,12 @@ namespace Campsite_application
             else
                 lblSite.Visible = false;
         }
+
+        private void lbFreeSites_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblCost.Text = "Cost per night: " + Convert.ToString(data.GetPrice(Convert.ToInt32(lbFreeSites.SelectedItem)));
+        }
+
 
     }
 }

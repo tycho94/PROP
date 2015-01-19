@@ -32,7 +32,6 @@
             this.Campsite = new System.Windows.Forms.PictureBox();
             this.lbFreeSites = new System.Windows.Forms.ListBox();
             this.lblCost = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.reserveBtn = new System.Windows.Forms.Button();
@@ -67,26 +66,18 @@
             this.lbFreeSites.Location = new System.Drawing.Point(9, 3);
             this.lbFreeSites.Name = "lbFreeSites";
             this.lbFreeSites.ScrollAlwaysVisible = true;
-            this.lbFreeSites.Size = new System.Drawing.Size(167, 264);
+            this.lbFreeSites.Size = new System.Drawing.Size(167, 290);
             this.lbFreeSites.TabIndex = 28;
+            this.lbFreeSites.SelectedIndexChanged += new System.EventHandler(this.lbFreeSites_SelectedIndexChanged);
             // 
             // lblCost
             // 
             this.lblCost.AutoSize = true;
-            this.lblCost.Location = new System.Drawing.Point(6, 300);
+            this.lblCost.Location = new System.Drawing.Point(7, 302);
             this.lblCost.Name = "lblCost";
             this.lblCost.Size = new System.Drawing.Size(75, 13);
             this.lblCost.TabIndex = 30;
             this.lblCost.Text = "Cost per night:";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(6, 287);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(40, 13);
-            this.lblStatus.TabIndex = 29;
-            this.lblStatus.Text = "Status:";
             // 
             // label2
             // 
@@ -117,6 +108,7 @@
             this.reserveBtn.TabIndex = 31;
             this.reserveBtn.Text = "Reserve!";
             this.reserveBtn.UseVisualStyleBackColor = false;
+            this.reserveBtn.Click += new System.EventHandler(this.reserveBtn_Click);
             // 
             // label3
             // 
@@ -143,7 +135,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.Controls.Add(this.lbFreeSites);
-            this.panel1.Controls.Add(this.lblStatus);
             this.panel1.Controls.Add(this.lblCost);
             this.panel1.Location = new System.Drawing.Point(12, 108);
             this.panel1.Name = "panel1";
@@ -228,7 +219,6 @@
         private System.Windows.Forms.PictureBox Campsite;
         private System.Windows.Forms.ListBox lbFreeSites;
         private System.Windows.Forms.Label lblCost;
-        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button reserveBtn;

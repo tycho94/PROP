@@ -25,6 +25,11 @@ namespace Campsite_application
 
         private string sites = "SELECT SPOTID FROM CAMPSPOT WHERE RESERVEE IS NULL";
 
+        private string price = "SELECT PRICE FROM CAMPSPOT WHERE SPOTID = @SPOTID";
+
+        private string reserve1 = "UPDATE CAMPSPOT SET RESERVEE = @RFID WHERE SPOTID = @SPOTID";
+        private string reserve2 = "UPDATE VISITOR SET CAMPSPOT = @SPOTID WHERE RFID = @RFID";
+
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader rdr;
@@ -46,6 +51,20 @@ namespace Campsite_application
             }
             rdr.Close();
             return list;
+        }
+
+        public Int32 GetPrice(int spot)
+        {
+            int nr = -1;
+            cmd = new MySqlCommand(price, con);
+            cmd.Parameters.AddWithValue("@SPOTID", spot);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                nr = rdr.GetInt32(0);
+            }
+            rdr.Close();
+            return nr;
         }
 
         public string GetName(string tag)
@@ -96,6 +115,23 @@ namespace Campsite_application
                 rdr.Close();
                 return -1;
             }
+
+        }
+
+        public void Reserve(string tag, int spotID)
+        {
+
+                cmd = new MySqlCommand(reserve1, con);
+                cmd.Parameters.AddWithValue("@RFID", tag);
+                cmd.Parameters.AddWithValue("@SPOTID", spotID);
+                cmd.ExecuteNonQuery();
+
+                cmd = new MySqlCommand(reserve2, con);
+                cmd.Parameters.AddWithValue("@RFID", tag);
+                cmd.Parameters.AddWithValue("@SPOTID", spotID);
+                cmd.ExecuteNonQuery();
+                //return true;
+            
 
         }
 
