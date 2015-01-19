@@ -17,13 +17,13 @@ namespace entrance_application
                                         "UID=dbi289514;" + // your user id
                                         "PASSWORD=HdPvIjPpDJ;";  // your password
 
-        private string status = "SELECT ACTIVE FROM VISITOR WHERE RFID = @RFID";
+        private string status = "SELECT STATUS FROM VISITOR WHERE RFID = @RFID";
 
         private string name = "SELECT LAST_NAME FROM VISITOR WHERE RFID = @RFID";
 
         private string pass = "SELECT PASSWORD FROM access_pass WHERE Security_lvl = 2 OR Security_lvl = 3";
 
-        private string changestatus = "UPDATE VISITOR SET ACTIVE = @STATUS WHERE RFID = @RFID";
+        private string changestatus = "UPDATE VISITOR SET STATUS = @STATUS WHERE RFID = @RFID";
 
 
         MySqlConnection con;
@@ -33,14 +33,6 @@ namespace entrance_application
         {
             con = new MySqlConnection(connectionInfo);
             con.Open();
-        }
-
-        public String Version()
-        {
-            string stm = "SELECT VERSION()";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            string version = "Connected to database. Version: " + Convert.ToString(cmd.ExecuteScalar());
-            return version;
         }
 
         public Int32 GetStatus(string tag)

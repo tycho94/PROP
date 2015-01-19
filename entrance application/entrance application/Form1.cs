@@ -56,7 +56,7 @@ namespace entrance_application
                 else
                     MessageBox.Show("Wrong pass");
 
-                
+
             }
             catch
             {
@@ -76,6 +76,7 @@ namespace entrance_application
                     tbStatus.BackColor = Color.LightGreen;
                     tbStatus.Text = "Allowed";
                     tbName.Text = data.GetName(e.Tag);
+                    btnEnter.Enabled = true;
                 }
                 if (data.GetStatus(e.Tag) == 1)
                 {
@@ -84,15 +85,6 @@ namespace entrance_application
                     tbStatus.Text = "Entered";
                     tbName.Text = data.GetName(e.Tag);
                     btnEnter.Enabled = false;
-                }
-                if (data.GetStatus(e.Tag) == 2)
-                {
-                    tbStatus.BackColor = Color.Red;
-                    //db function
-                    tbStatus.Text = "Banned!";
-                    tbName.Text = data.GetName(e.Tag);
-                    btnEnter.Enabled = false;
-                    btnBan.Enabled = false;
                 }
             }
             catch
@@ -105,23 +97,7 @@ namespace entrance_application
         {
             try
             {
-
                 data.ChangeStatus(tag, 1);
-                System.Threading.Thread.Sleep(1000);
-                resetui();
-            }
-            catch
-            {
-                MessageBox.Show("Wait for RFID scan");
-            }
-        }
-
-        private void btnBan_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                data.ChangeStatus(tag, 2);
                 System.Threading.Thread.Sleep(1000);
                 resetui();
             }
@@ -136,8 +112,8 @@ namespace entrance_application
             tbName.Text = "";
             tbStatus.Text = "";
             tbStatus.BackColor = Color.Empty;
-            btnBan.Enabled = true;
             btnEnter.Enabled = true;
+
         }
 
     }

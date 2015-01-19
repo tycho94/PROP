@@ -35,7 +35,6 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
-            this.btnBan = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -102,22 +101,11 @@
             this.btnEnter.UseVisualStyleBackColor = true;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
-            // btnBan
-            // 
-            this.btnBan.Location = new System.Drawing.Point(16, 119);
-            this.btnBan.Name = "btnBan";
-            this.btnBan.Size = new System.Drawing.Size(187, 21);
-            this.btnBan.TabIndex = 8;
-            this.btnBan.Text = "Ban";
-            this.btnBan.UseVisualStyleBackColor = true;
-            this.btnBan.Click += new System.EventHandler(this.btnBan_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(219, 258);
-            this.Controls.Add(this.btnBan);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbName);
@@ -141,7 +129,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnEnter;
-        private System.Windows.Forms.Button btnBan;
     }
 }
 

@@ -23,7 +23,6 @@ namespace Exit_app
             InitializeComponent();
             label1.Visible = false;
             label2.Visible = false;
-            label4.Visible = false;
             moneylbl.Visible = false;
 
             try
@@ -56,14 +55,12 @@ namespace Exit_app
                     label1.Visible = false;
                     label2.Visible = false;
                     moneylbl.Visible = false;
-                    label4.Visible = false;
                     label3.Text = "Return your items before you can leave.";
                 }
                 else
                 {
                     label1.Visible = true;
                     label2.Visible = true;
-                    label4.Visible = false;
                     moneylbl.Visible = true;
                     label3.Text = "";
                     data.leaving(e.Tag);
@@ -73,17 +70,8 @@ namespace Exit_app
             {
                 label1.Visible = false;
                 label2.Visible = false;
-                label4.Visible = false;
                 moneylbl.Visible = false;
                 label3.Text = "Something went wrong, please contact support.";
-            }
-            else
-            {
-                label1.Visible = false;
-                label2.Visible = false;
-                moneylbl.Visible = false;
-                label3.Text = "You have been banned!";
-                label4.Visible = true;
             }
         }
     }

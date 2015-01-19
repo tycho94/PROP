@@ -43,7 +43,21 @@ namespace Campsite_application
 
         private void reserveBtn_Click(object sender, EventArgs e)
         {
-            data.Reserve(tag, spot);
+            spot = Convert.ToInt32(lbFreeSites.SelectedItem);
+            if (data.Reserve(tag, spot))
+            {
+                statusStrip1.Text = "Succesfull reservation";
+            }
+            else
+            {
+                statusStrip1.Text = "Something went wrong";
+            }
+
+            if (data.GetSite(tag) != -1)
+                lblSite.Text = "Site number: " + data.GetSite(tag).ToString();
+            else
+                lblSite.Visible = false;
+            
         }
 
         
@@ -51,7 +65,6 @@ namespace Campsite_application
         private void Scan(object sender, TagEventArgs e)
         {
             tag = e.Tag;
-            spot = Convert.ToInt32(lbFreeSites.SelectedItem);
             lblName.Text = "Name: " + data.GetName(e.Tag);
             lblMoney.Text = "Money: " + data.GetMoney(e.Tag).ToString();
             lblSite.Visible = true;

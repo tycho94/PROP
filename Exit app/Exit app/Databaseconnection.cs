@@ -21,9 +21,9 @@ namespace Exit_app
 
         private string getrented = "SELECT RENTAL_ID FROM RENTEDITEM  where RFID = @RFID";
 
-        private string leave = "UPDATE VISITOR SET ACTIVE = 0 WHERE RFID = @RFID";
+        private string leave = "UPDATE VISITOR SET STATUS = 0 WHERE RFID = @RFID";
 
-        private string status = "SELECT ACTIVE FROM VISITOR WHERE RFID = @RFID";
+        private string status = "SELECT STATUS FROM VISITOR WHERE RFID = @RFID";
 
         MySqlConnection con;
         MySqlCommand cmd;

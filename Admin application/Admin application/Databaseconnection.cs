@@ -17,9 +17,9 @@ namespace Admin_application
                                         "UID=dbi289514;" + // your user id
                                         "PASSWORD=HdPvIjPpDJ;";  // your password
 
-        private string nrofvisitors = "SELECT COUNT(*) FROM VISITOR WHERE ACTIVE = 1";
+        private string nrofvisitors = "SELECT COUNT(*) FROM VISITOR WHERE STATUS = 1";
 
-        private string names = "SELECT First_name, LAST_NAME FROM VISITOR WHERE ACTIVE = 1";
+        private string names = "SELECT First_name, LAST_NAME FROM VISITOR WHERE STATUS = 1";
 
         private string tickets = "SELECT COUNT(*) FROM VISITOR";
 
