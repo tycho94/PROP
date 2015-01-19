@@ -18,7 +18,6 @@ namespace entrance_application
         private RFID Reader;
         DatabaseConnection data = new DatabaseConnection();
         string tag;
-        Timer checkup = new Timer();
 
 
         public Form1()

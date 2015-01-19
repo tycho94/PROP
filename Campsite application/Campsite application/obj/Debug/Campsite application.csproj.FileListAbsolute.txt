@@ -11,3 +11,9 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\programming\Programming\Campsite app
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\bin\Debug\Campsite application.exe.config
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.exe
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\bin\Debug\Campsite application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\bin\Debug\Campsite application.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite_application.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite_application.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Campsite application\Campsite application\obj\Debug\Campsite application.csproj.GenerateResource.Cache
