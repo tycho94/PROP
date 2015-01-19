@@ -19,20 +19,24 @@ namespace Admin_application
 
         private string nrofvisitors = "SELECT COUNT(*) FROM VISITOR WHERE ACTIVE = 1";
 
-        private string names = "SELECT LAST_NAME FROM VISITOR WHERE ACTIVE = 1";
+        private string names = "SELECT First_name, LAST_NAME FROM VISITOR WHERE ACTIVE = 1";
 
         private string tickets = "SELECT COUNT(*) FROM VISITOR";
 
-        private string changestatus = "UPDATE VISITOR SET ACTIVE = @STATUS WHERE RFID = @RFID";
         private string itemssold = "Select  SUM(quantity) from itemsold";
 
-        private string stock = "";
+        private string profititems = "SELECT item.item_name, (itemsold.quantity*item.item_price) FROM ITEM inner join itemsold on item.itemid = itemsold.item_id";
+
+        private string totalprofit = "SELECT SUM(itemsold.quantity*item.item_price) as profit FROM ITEM inner join itemsold on item.itemid = itemsold.item_id";
+
+        private string stockitems = "SELECT ITEM_NAME, item_stock from item";
 
 
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader rdr;
         List<string> list;
+        string a;
 
         public DatabaseConnection()
         {
@@ -43,11 +47,12 @@ namespace Admin_application
         public List<string> GetNames()
         {
             list = new List<string>();
+
             cmd = new MySqlCommand(this.names, con);
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                list.Add(rdr.GetString(0));
+                list.Add(rdr.GetString(0) + "\t" + rdr.GetString(1));
             }
             rdr.Close();
             return list;
@@ -92,19 +97,46 @@ namespace Admin_application
             return nr;
         }
 
-        public List<string> GetStock()
+        public List<string> GetItemPrices()
         {
             list = new List<string>();
-            cmd = new MySqlCommand(this.names, con);
+            cmd = new MySqlCommand(this.profititems, con);
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                list.Add(rdr.GetString(0));
+                list.Add((rdr.GetString(0) + "\tEarnings: " + rdr.GetInt32(1).ToString()));
+            }
+            rdr.Close();
+
+            return list;
+        }
+
+        public Int32 GetProfit()
+        {
+            int nr = 0;
+            cmd = new MySqlCommand(totalprofit, con);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                nr = rdr.GetInt32(0);
+            }
+            rdr.Close();
+            return nr;
+        }
+
+        public List<string> GetStock()
+        {
+            list = new List<string>();
+            cmd = new MySqlCommand(this.stockitems, con);
+            rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                list.Add((rdr.GetString(0)+ "\tStock: " + rdr.GetString(1)));
             }
             rdr.Close();
             return list;
         }
-        
+
         public void Disconnect()
         {
             con.Close();

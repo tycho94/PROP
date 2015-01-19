@@ -33,7 +33,7 @@
             this.lblVisitors = new System.Windows.Forms.Label();
             this.StocksList = new System.Windows.Forms.ListBox();
             this.lblTickets = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblprofit = new System.Windows.Forms.Label();
             this.lblsold = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -80,14 +80,14 @@
             this.lblTickets.TabIndex = 6;
             this.lblTickets.Text = "Tickets total: ";
             // 
-            // label4
+            // lblprofit
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(273, 231);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Estimate profit made:";
+            this.lblprofit.AutoSize = true;
+            this.lblprofit.Location = new System.Drawing.Point(273, 231);
+            this.lblprofit.Name = "lblprofit";
+            this.lblprofit.Size = new System.Drawing.Size(105, 13);
+            this.lblprofit.TabIndex = 9;
+            this.lblprofit.Text = "Estimate profit made:";
             // 
             // lblsold
             // 
@@ -115,7 +115,7 @@
             this.ClientSize = new System.Drawing.Size(720, 296);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblsold);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblprofit);
             this.Controls.Add(this.lblTickets);
             this.Controls.Add(this.StocksList);
             this.Controls.Add(this.lblVisitors);
@@ -135,7 +135,7 @@
         private System.Windows.Forms.Label lblVisitors;
         private System.Windows.Forms.ListBox StocksList;
         private System.Windows.Forms.Label lblTickets;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblprofit;
         private System.Windows.Forms.Label lblsold;
         private System.Windows.Forms.Button btnRefresh;
     }

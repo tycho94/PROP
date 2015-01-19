@@ -27,9 +27,14 @@ namespace Admin_application
         private void RefreshPanel()
         {
             VisitorsList.DataSource = data.GetNames();
+            MoneyLogList.DataSource = data.GetItemPrices();
+            StocksList.DataSource = data.GetStock();
+
             lblVisitors.Text = "Amount Of Visitors:" + Convert.ToString(data.GetVisitors());
             lblTickets.Text = "Tickets total: " + Convert.ToString(data.GetTickets());
             lblsold.Text = "Total items sold:" + Convert.ToString(data.TotalSold());
+            lblprofit.Text = "Estimate profit made: " + Convert.ToString(data.GetProfit());
+
         }
     }
 }
