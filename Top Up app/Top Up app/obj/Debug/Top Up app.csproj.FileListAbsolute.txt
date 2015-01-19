@@ -16,3 +16,6 @@ C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top_Up_app.Form1.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top_Up_app.Properties.Resources.resources
 C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top Up app.csproj.GenerateResource.Cache
+D:\Project\Temp\Top Up app\Top Up app\bin\Debug\Top Up app.exe.config
+D:\Project\Temp\Top Up app\Top Up app\obj\Debug\Top Up app.exe
+D:\Project\Temp\Top Up app\Top Up app\obj\Debug\Top Up app.pdb

@@ -18,9 +18,9 @@ namespace Top_Up_app
                                       "PASSWORD=HdPvIjPpDJ;";  // your password
 
 
-        private string getBalance = "SELECT BALANCE FROM VISITOR WHERE  Visitor_Id = @IDO";
+        private string getBalance = "SELECT BALANCE FROM VISITOR WHERE  RFID = @IDO";
 
-        private string updateBalance="UPDATE VISITOR SET BALANCE = @BALANCE+@CREDITS WHERE Visitor_Id = @IDO";
+        private string updateBalance="UPDATE VISITOR SET BALANCE = @BALANCE+@CREDITS WHERE RFID = @IDO";
 
 
         MySqlConnection con = null;
@@ -35,7 +35,7 @@ namespace Top_Up_app
         }
 
 
-          public string loadBalance(int id) 
+          public string loadBalance(string id) 
           {
               cmd = new MySqlCommand(getBalance, con);
               cmd.Parameters.AddWithValue("@IDO", id);
@@ -55,7 +55,7 @@ namespace Top_Up_app
  
           }
 
-          public Boolean adding(int balance, int credits, int id)
+          public Boolean adding(int balance, int credits, string id)
           {
               try
               {
