@@ -44,9 +44,9 @@ namespace Campsite_application
 
         public Boolean Reserve(string tag, int spotID)
         {
+            string b = "";
             try
             {
-                string b = "";
                 cmd = new MySqlCommand(checkspot, con);
                 cmd.Parameters.AddWithValue("@SPOTID", spotID);
                 rdr = cmd.ExecuteReader();
@@ -60,18 +60,31 @@ namespace Campsite_application
             }
             catch
             {
-                rdr.Close();
+                try
+                {
 
-                cmd = new MySqlCommand(reserve1, con);
-                cmd.Parameters.AddWithValue("@RFID", tag);
-                cmd.Parameters.AddWithValue("@SPOTID", spotID);
-                cmd.ExecuteNonQuery();
+                    rdr.Close();
 
-                cmd = new MySqlCommand(reserve2, con);
-                cmd.Parameters.AddWithValue("@RFID", tag);
-                cmd.Parameters.AddWithValue("@SPOTID", spotID);
-                cmd.ExecuteNonQuery();
-                return true;
+                    if (b == "")
+                    {
+
+                        cmd = new MySqlCommand(reserve1, con);
+                        cmd.Parameters.AddWithValue("@RFID", tag);
+                        cmd.Parameters.AddWithValue("@SPOTID", spotID);
+                        cmd.ExecuteNonQuery();
+
+                        cmd = new MySqlCommand(reserve2, con);
+                        cmd.Parameters.AddWithValue("@RFID", tag);
+                        cmd.Parameters.AddWithValue("@SPOTID", spotID);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 

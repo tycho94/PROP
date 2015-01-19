@@ -46,11 +46,11 @@ namespace Campsite_application
             spot = Convert.ToInt32(lbFreeSites.SelectedItem);
             if (data.Reserve(tag, spot))
             {
-                statusStrip1.Text = "Succesfull reservation";
+               Status.Text = "Succesfull reservation";
             }
             else
             {
-                statusStrip1.Text = "Something went wrong";
+                Status.Text = "Something went wrong";
             }
 
             if (data.GetSite(tag) != -1)
