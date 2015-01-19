@@ -48,9 +48,9 @@
             // 
             this.Campsite.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.Campsite.Image = ((System.Drawing.Image)(resources.GetObject("Campsite.Image")));
-            this.Campsite.Location = new System.Drawing.Point(199, 12);
+            this.Campsite.Location = new System.Drawing.Point(210, 12);
             this.Campsite.Name = "Campsite";
-            this.Campsite.Size = new System.Drawing.Size(761, 529);
+            this.Campsite.Size = new System.Drawing.Size(750, 529);
             this.Campsite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Campsite.TabIndex = 0;
             this.Campsite.TabStop = false;

@@ -7,3 +7,12 @@
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Top Up app\Top Up app\obj\Debug\Top Up app.csproj.GenerateResource.Cache
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Top Up app\Top Up app\obj\Debug\Top Up app.exe
 \\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\Top Up app\Top Up app\obj\Debug\Top Up app.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\bin\Debug\Top Up app.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top Up app.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top Up app.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\bin\Debug\Top Up app.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\bin\Debug\Top Up app.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top Up app.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top_Up_app.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top_Up_app.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Top Up app\Top Up app\obj\Debug\Top Up app.csproj.GenerateResource.Cache

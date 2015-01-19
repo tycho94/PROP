@@ -30,14 +30,12 @@
         {
             this.MoneyLogList = new System.Windows.Forms.ListBox();
             this.VisitorsList = new System.Windows.Forms.ListBox();
-            this.VisitorsLabel = new System.Windows.Forms.Label();
+            this.lblVisitors = new System.Windows.Forms.Label();
             this.StocksList = new System.Windows.Forms.ListBox();
-            this.StocksLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTickets = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblsold = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MoneyLogList
@@ -56,14 +54,14 @@
             this.VisitorsList.Size = new System.Drawing.Size(200, 173);
             this.VisitorsList.TabIndex = 2;
             // 
-            // VisitorsLabel
+            // lblVisitors
             // 
-            this.VisitorsLabel.AutoSize = true;
-            this.VisitorsLabel.Location = new System.Drawing.Point(23, 231);
-            this.VisitorsLabel.Name = "VisitorsLabel";
-            this.VisitorsLabel.Size = new System.Drawing.Size(96, 13);
-            this.VisitorsLabel.TabIndex = 3;
-            this.VisitorsLabel.Text = "Amount Of Visitors:";
+            this.lblVisitors.AutoSize = true;
+            this.lblVisitors.Location = new System.Drawing.Point(23, 231);
+            this.lblVisitors.Name = "lblVisitors";
+            this.lblVisitors.Size = new System.Drawing.Size(96, 13);
+            this.lblVisitors.TabIndex = 3;
+            this.lblVisitors.Text = "Amount Of Visitors:";
             // 
             // StocksList
             // 
@@ -73,32 +71,14 @@
             this.StocksList.Size = new System.Drawing.Size(200, 173);
             this.StocksList.TabIndex = 4;
             // 
-            // StocksLabel
+            // lblTickets
             // 
-            this.StocksLabel.AutoSize = true;
-            this.StocksLabel.Location = new System.Drawing.Point(507, 231);
-            this.StocksLabel.Name = "StocksLabel";
-            this.StocksLabel.Size = new System.Drawing.Size(109, 13);
-            this.StocksLabel.TabIndex = 5;
-            this.StocksLabel.Text = "Amount of stocks left:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 244);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Total entered: ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 257);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Total left:";
+            this.lblTickets.AutoSize = true;
+            this.lblTickets.Location = new System.Drawing.Point(23, 244);
+            this.lblTickets.Name = "lblTickets";
+            this.lblTickets.Size = new System.Drawing.Size(71, 13);
+            this.lblTickets.TabIndex = 6;
+            this.lblTickets.Text = "Tickets total: ";
             // 
             // label4
             // 
@@ -109,37 +89,36 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Estimate profit made:";
             // 
-            // label3
+            // lblsold
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(507, 244);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Total items sold:";
+            this.lblsold.AutoSize = true;
+            this.lblsold.Location = new System.Drawing.Point(273, 244);
+            this.lblsold.Name = "lblsold";
+            this.lblsold.Size = new System.Drawing.Size(83, 13);
+            this.lblsold.TabIndex = 10;
+            this.lblsold.Text = "Total items sold:";
             // 
-            // label5
+            // btnRefresh
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(507, 257);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Total items returned(DOA):";
+            this.btnRefresh.Location = new System.Drawing.Point(342, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 296);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.lblsold);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.StocksLabel);
+            this.Controls.Add(this.lblTickets);
             this.Controls.Add(this.StocksList);
-            this.Controls.Add(this.VisitorsLabel);
+            this.Controls.Add(this.lblVisitors);
             this.Controls.Add(this.VisitorsList);
             this.Controls.Add(this.MoneyLogList);
             this.Name = "Form1";
@@ -153,14 +132,12 @@
 
         private System.Windows.Forms.ListBox MoneyLogList;
         private System.Windows.Forms.ListBox VisitorsList;
-        private System.Windows.Forms.Label VisitorsLabel;
+        private System.Windows.Forms.Label lblVisitors;
         private System.Windows.Forms.ListBox StocksList;
-        private System.Windows.Forms.Label StocksLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTickets;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblsold;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

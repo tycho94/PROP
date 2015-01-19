@@ -1,2 +1,12 @@
 \\vmware-host\shared folders\documents\visual studio 2013\Projects\Admin application\Admin application\bin\Debug\Admin application.exe.config
 C:\Users\Tycho\Documents\School\Fontys\ProP\GUI for ProP\Admin application\Admin application\bin\Debug\Admin application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\bin\Debug\Admin application.exe.config
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\bin\Debug\Admin application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\bin\Debug\Admin application.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\bin\Debug\MySql.Web.v20.dll
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin application.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin_application.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin_application.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin application.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin application.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Admin application\Admin application\obj\Debug\Admin application.pdb

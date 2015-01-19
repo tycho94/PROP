@@ -12,9 +12,24 @@ namespace Admin_application
 {
     public partial class Form1 : Form
     {
+        DatabaseConnection data = new DatabaseConnection();
         public Form1()
         {
             InitializeComponent();
+            RefreshPanel();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshPanel();
+        }
+
+        private void RefreshPanel()
+        {
+            VisitorsList.DataSource = data.GetNames();
+            lblVisitors.Text = "Amount Of Visitors:" + Convert.ToString(data.GetVisitors());
+            lblTickets.Text = "Tickets total: " + Convert.ToString(data.GetTickets());
+            lblsold.Text = "Total items sold:" + Convert.ToString(data.TotalSold());
         }
     }
 }
