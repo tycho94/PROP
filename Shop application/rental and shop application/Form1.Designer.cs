@@ -1,4 +1,4 @@
-﻿namespace rental_and_shop_application
+﻿namespace Shop_application
 {
     partial class Shop
     {
@@ -141,7 +141,6 @@
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Buying Goods";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label7
             // 
@@ -327,7 +326,7 @@
             // JackDPctBox
             // 
             this.JackDPctBox.BackColor = System.Drawing.Color.White;
-            this.JackDPctBox.Image = global::rental_and_shop_application.Properties.Resources.Jack_D;
+            this.JackDPctBox.Image = global::Shop_application.Properties.Resources.Jack_D;
             this.JackDPctBox.Location = new System.Drawing.Point(84, 628);
             this.JackDPctBox.Name = "JackDPctBox";
             this.JackDPctBox.Size = new System.Drawing.Size(70, 62);
@@ -339,7 +338,7 @@
             // burgerPctBox
             // 
             this.burgerPctBox.BackColor = System.Drawing.Color.White;
-            this.burgerPctBox.Image = global::rental_and_shop_application.Properties.Resources.burger;
+            this.burgerPctBox.Image = global::Shop_application.Properties.Resources.burger;
             this.burgerPctBox.Location = new System.Drawing.Point(8, 114);
             this.burgerPctBox.Name = "burgerPctBox";
             this.burgerPctBox.Size = new System.Drawing.Size(70, 62);
@@ -351,7 +350,7 @@
             // nuggetPctBox
             // 
             this.nuggetPctBox.BackColor = System.Drawing.Color.White;
-            this.nuggetPctBox.Image = global::rental_and_shop_application.Properties.Resources.ChickenNugget;
+            this.nuggetPctBox.Image = global::Shop_application.Properties.Resources.ChickenNugget;
             this.nuggetPctBox.Location = new System.Drawing.Point(84, 114);
             this.nuggetPctBox.Name = "nuggetPctBox";
             this.nuggetPctBox.Size = new System.Drawing.Size(70, 62);
@@ -363,7 +362,7 @@
             // CorndogPctBox
             // 
             this.CorndogPctBox.BackColor = System.Drawing.Color.White;
-            this.CorndogPctBox.Image = global::rental_and_shop_application.Properties.Resources.corndog;
+            this.CorndogPctBox.Image = global::Shop_application.Properties.Resources.corndog;
             this.CorndogPctBox.Location = new System.Drawing.Point(159, 114);
             this.CorndogPctBox.Name = "CorndogPctBox";
             this.CorndogPctBox.Size = new System.Drawing.Size(70, 62);
@@ -375,7 +374,7 @@
             // AbsoluteVodkaPctBox
             // 
             this.AbsoluteVodkaPctBox.BackColor = System.Drawing.Color.White;
-            this.AbsoluteVodkaPctBox.Image = global::rental_and_shop_application.Properties.Resources.Vodka;
+            this.AbsoluteVodkaPctBox.Image = global::Shop_application.Properties.Resources.Vodka;
             this.AbsoluteVodkaPctBox.Location = new System.Drawing.Point(160, 628);
             this.AbsoluteVodkaPctBox.Name = "AbsoluteVodkaPctBox";
             this.AbsoluteVodkaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -387,7 +386,7 @@
             // HotdogPctBox
             // 
             this.HotdogPctBox.BackColor = System.Drawing.Color.White;
-            this.HotdogPctBox.Image = global::rental_and_shop_application.Properties.Resources.hotdog;
+            this.HotdogPctBox.Image = global::Shop_application.Properties.Resources.hotdog;
             this.HotdogPctBox.Location = new System.Drawing.Point(9, 250);
             this.HotdogPctBox.Name = "HotdogPctBox";
             this.HotdogPctBox.Size = new System.Drawing.Size(70, 62);
@@ -399,7 +398,7 @@
             // pizzaPctBox
             // 
             this.pizzaPctBox.BackColor = System.Drawing.Color.White;
-            this.pizzaPctBox.Image = global::rental_and_shop_application.Properties.Resources.pizza;
+            this.pizzaPctBox.Image = global::Shop_application.Properties.Resources.pizza;
             this.pizzaPctBox.Location = new System.Drawing.Point(84, 250);
             this.pizzaPctBox.Name = "pizzaPctBox";
             this.pizzaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -411,7 +410,7 @@
             // JaegerMeisterPctBox
             // 
             this.JaegerMeisterPctBox.BackColor = System.Drawing.Color.White;
-            this.JaegerMeisterPctBox.Image = global::rental_and_shop_application.Properties.Resources.Jagermeister_Bottle;
+            this.JaegerMeisterPctBox.Image = global::Shop_application.Properties.Resources.Jagermeister_Bottle;
             this.JaegerMeisterPctBox.Location = new System.Drawing.Point(10, 628);
             this.JaegerMeisterPctBox.Name = "JaegerMeisterPctBox";
             this.JaegerMeisterPctBox.Size = new System.Drawing.Size(70, 62);
@@ -423,7 +422,7 @@
             // FriesPctBox
             // 
             this.FriesPctBox.BackColor = System.Drawing.Color.White;
-            this.FriesPctBox.Image = global::rental_and_shop_application.Properties.Resources.RI2226_1i4615french_fries;
+            this.FriesPctBox.Image = global::Shop_application.Properties.Resources.RI2226_1i4615french_fries;
             this.FriesPctBox.Location = new System.Drawing.Point(160, 250);
             this.FriesPctBox.Name = "FriesPctBox";
             this.FriesPctBox.Size = new System.Drawing.Size(70, 62);
@@ -435,7 +434,7 @@
             // MtnDewPctBox
             // 
             this.MtnDewPctBox.BackColor = System.Drawing.Color.White;
-            this.MtnDewPctBox.Image = global::rental_and_shop_application.Properties.Resources.mountaindeweu_500_1;
+            this.MtnDewPctBox.Image = global::Shop_application.Properties.Resources.mountaindeweu_500_1;
             this.MtnDewPctBox.Location = new System.Drawing.Point(160, 492);
             this.MtnDewPctBox.Name = "MtnDewPctBox";
             this.MtnDewPctBox.Size = new System.Drawing.Size(70, 62);
@@ -447,7 +446,7 @@
             // DurumPctBox
             // 
             this.DurumPctBox.BackColor = System.Drawing.Color.White;
-            this.DurumPctBox.Image = global::rental_and_shop_application.Properties.Resources.Kebab_Original;
+            this.DurumPctBox.Image = global::Shop_application.Properties.Resources.Kebab_Original;
             this.DurumPctBox.Location = new System.Drawing.Point(8, 182);
             this.DurumPctBox.Name = "DurumPctBox";
             this.DurumPctBox.Size = new System.Drawing.Size(70, 62);
@@ -459,7 +458,7 @@
             // PepsiPctBox
             // 
             this.PepsiPctBox.BackColor = System.Drawing.Color.White;
-            this.PepsiPctBox.Image = global::rental_and_shop_application.Properties.Resources._3023648_slide_1_pepsi_can;
+            this.PepsiPctBox.Image = global::Shop_application.Properties.Resources._3023648_slide_1_pepsi_can;
             this.PepsiPctBox.Location = new System.Drawing.Point(84, 492);
             this.PepsiPctBox.Name = "PepsiPctBox";
             this.PepsiPctBox.Size = new System.Drawing.Size(70, 62);
@@ -471,7 +470,7 @@
             // TacoPctBox
             // 
             this.TacoPctBox.BackColor = System.Drawing.Color.White;
-            this.TacoPctBox.Image = global::rental_and_shop_application.Properties.Resources.large_TwoTacos;
+            this.TacoPctBox.Image = global::Shop_application.Properties.Resources.large_TwoTacos;
             this.TacoPctBox.Location = new System.Drawing.Point(84, 182);
             this.TacoPctBox.Name = "TacoPctBox";
             this.TacoPctBox.Size = new System.Drawing.Size(70, 62);
@@ -483,7 +482,7 @@
             // ColaZeroPctBox
             // 
             this.ColaZeroPctBox.BackColor = System.Drawing.Color.White;
-            this.ColaZeroPctBox.Image = global::rental_and_shop_application.Properties.Resources.cola_zero_01;
+            this.ColaZeroPctBox.Image = global::Shop_application.Properties.Resources.cola_zero_01;
             this.ColaZeroPctBox.Location = new System.Drawing.Point(8, 492);
             this.ColaZeroPctBox.Name = "ColaZeroPctBox";
             this.ColaZeroPctBox.Size = new System.Drawing.Size(70, 62);
@@ -495,7 +494,7 @@
             // LoempiaPctBox
             // 
             this.LoempiaPctBox.BackColor = System.Drawing.Color.White;
-            this.LoempiaPctBox.Image = global::rental_and_shop_application.Properties.Resources.loempia;
+            this.LoempiaPctBox.Image = global::Shop_application.Properties.Resources.loempia;
             this.LoempiaPctBox.Location = new System.Drawing.Point(160, 182);
             this.LoempiaPctBox.Name = "LoempiaPctBox";
             this.LoempiaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -507,7 +506,7 @@
             // SpaBlauwPctBox
             // 
             this.SpaBlauwPctBox.BackColor = System.Drawing.Color.White;
-            this.SpaBlauwPctBox.Image = global::rental_and_shop_application.Properties.Resources.spa_reine_50cl_500x500;
+            this.SpaBlauwPctBox.Image = global::Shop_application.Properties.Resources.spa_reine_50cl_500x500;
             this.SpaBlauwPctBox.Location = new System.Drawing.Point(160, 560);
             this.SpaBlauwPctBox.Name = "SpaBlauwPctBox";
             this.SpaBlauwPctBox.Size = new System.Drawing.Size(70, 62);
@@ -519,7 +518,7 @@
             // NachosPctBox
             // 
             this.NachosPctBox.BackColor = System.Drawing.Color.White;
-            this.NachosPctBox.Image = global::rental_and_shop_application.Properties.Resources.NachosBeef;
+            this.NachosPctBox.Image = global::Shop_application.Properties.Resources.NachosBeef;
             this.NachosPctBox.Location = new System.Drawing.Point(10, 318);
             this.NachosPctBox.Name = "NachosPctBox";
             this.NachosPctBox.Size = new System.Drawing.Size(70, 62);
@@ -531,7 +530,7 @@
             // MonsterPctBox
             // 
             this.MonsterPctBox.BackColor = System.Drawing.Color.White;
-            this.MonsterPctBox.Image = global::rental_and_shop_application.Properties.Resources.Monster_Energy_Drink_24_oz_Can;
+            this.MonsterPctBox.Image = global::Shop_application.Properties.Resources.Monster_Energy_Drink_24_oz_Can;
             this.MonsterPctBox.Location = new System.Drawing.Point(84, 560);
             this.MonsterPctBox.Name = "MonsterPctBox";
             this.MonsterPctBox.Size = new System.Drawing.Size(70, 62);
@@ -543,7 +542,7 @@
             // ChickenPctBox
             // 
             this.ChickenPctBox.BackColor = System.Drawing.Color.White;
-            this.ChickenPctBox.Image = global::rental_and_shop_application.Properties.Resources._20120112_popeyes_refried_chicken_6;
+            this.ChickenPctBox.Image = global::Shop_application.Properties.Resources._20120112_popeyes_refried_chicken_6;
             this.ChickenPctBox.Location = new System.Drawing.Point(84, 318);
             this.ChickenPctBox.Name = "ChickenPctBox";
             this.ChickenPctBox.Size = new System.Drawing.Size(70, 62);
@@ -555,7 +554,7 @@
             // BavariaPctBox
             // 
             this.BavariaPctBox.BackColor = System.Drawing.Color.White;
-            this.BavariaPctBox.Image = global::rental_and_shop_application.Properties.Resources.Bavaria_vles_2;
+            this.BavariaPctBox.Image = global::Shop_application.Properties.Resources.Bavaria_vles_2;
             this.BavariaPctBox.Location = new System.Drawing.Point(9, 560);
             this.BavariaPctBox.Name = "BavariaPctBox";
             this.BavariaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -567,7 +566,7 @@
             // KibbelingPctBox
             // 
             this.KibbelingPctBox.BackColor = System.Drawing.Color.White;
-            this.KibbelingPctBox.Image = global::rental_and_shop_application.Properties.Resources.kibbeling_2;
+            this.KibbelingPctBox.Image = global::Shop_application.Properties.Resources.kibbeling_2;
             this.KibbelingPctBox.Location = new System.Drawing.Point(160, 318);
             this.KibbelingPctBox.Name = "KibbelingPctBox";
             this.KibbelingPctBox.Size = new System.Drawing.Size(70, 62);
@@ -579,7 +578,7 @@
             // SpritePctBox
             // 
             this.SpritePctBox.BackColor = System.Drawing.Color.White;
-            this.SpritePctBox.Image = global::rental_and_shop_application.Properties.Resources.Sprite_Lata350_regular;
+            this.SpritePctBox.Image = global::Shop_application.Properties.Resources.Sprite_Lata350_regular;
             this.SpritePctBox.Location = new System.Drawing.Point(159, 424);
             this.SpritePctBox.Name = "SpritePctBox";
             this.SpritePctBox.Size = new System.Drawing.Size(70, 62);
@@ -591,7 +590,7 @@
             // FantaPctBox
             // 
             this.FantaPctBox.BackColor = System.Drawing.Color.White;
-            this.FantaPctBox.Image = global::rental_and_shop_application.Properties.Resources.Fanta;
+            this.FantaPctBox.Image = global::Shop_application.Properties.Resources.Fanta;
             this.FantaPctBox.Location = new System.Drawing.Point(84, 424);
             this.FantaPctBox.Name = "FantaPctBox";
             this.FantaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -603,7 +602,7 @@
             // ColaPctBox
             // 
             this.ColaPctBox.BackColor = System.Drawing.Color.White;
-            this.ColaPctBox.Image = global::rental_and_shop_application.Properties.Resources.Coca_Cola_33cl_CAN;
+            this.ColaPctBox.Image = global::Shop_application.Properties.Resources.Coca_Cola_33cl_CAN;
             this.ColaPctBox.Location = new System.Drawing.Point(8, 424);
             this.ColaPctBox.Name = "ColaPctBox";
             this.ColaPctBox.Size = new System.Drawing.Size(70, 62);
@@ -648,7 +647,6 @@
             this.Name = "Shop";
             this.RightToLeftLayout = true;
             this.Text = "Shop";
-            this.Load += new System.EventHandler(this.Shop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

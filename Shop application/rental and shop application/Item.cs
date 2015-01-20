@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rental_and_shop_application
+namespace Shop_application
 {
     class Item
     {

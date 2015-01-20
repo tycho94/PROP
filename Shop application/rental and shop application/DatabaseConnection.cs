@@ -8,7 +8,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Data;
 
-namespace rental_and_shop_application
+namespace Shop_application
 {
     class DatabaseConnection
     {

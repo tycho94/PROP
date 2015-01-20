@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Phidgets;
 using Phidgets.Events;
 
-namespace rental_and_shop_application
+namespace Shop_application
 {
     public partial class Shop : Form
     {
@@ -21,14 +21,13 @@ namespace rental_and_shop_application
         double totalCost = 0;
         private Items shop;
         double totalPrice = 0;
-        int Left = 0;
         object O;
-        public string RFID = "";
+        public string tag = "";
         int shopID = 10;
         bool isReturn = false;
         double balance;
         
-        RFID reader;
+        RFID Reader;
 
         List<Item> bought = new List<Item>();
         Item product;
@@ -40,13 +39,13 @@ namespace rental_and_shop_application
         {
             InitializeComponent();
 
-            reader = new RFID();
-            reader.Attach += new AttachEventHandler(rfid_Attach);
-            reader.Detach += new DetachEventHandler(rfid_Detach);
-            reader.RFIDTag += new TagEventHandler(rfid_Tag);
-            reader.RFIDTagLost += new TagEventHandler(rfid_TagLost);
-            reader.Antenna = true;
-            reader.open();
+            Reader = new RFID();
+            Reader.Tag += new TagEventHandler(rfid_Tag);
+            Reader.open();
+            Reader.waitForAttachment(3000);
+            Reader.Antenna = true;
+            Reader.LED = true;
+
             shop = new Items("shop");
     
             CreateDummyData();
@@ -86,18 +85,6 @@ namespace rental_and_shop_application
             {
                 shop.AddSnack(i.Name, i.Price, i.TotalLeft, i.ID,i.Image);
             }
-
- 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Shop_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -111,49 +98,9 @@ namespace rental_and_shop_application
            labelProduct.Text ="Product: "+product.TotalLeft.ToString();
            //MessageBox.Show(i.AsString());
            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-           pictureBoxBIG.Image = (Image)O;
-
-           
-           
- 
-           
+           pictureBoxBIG.Image = (Image)O; 
         }
         
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
@@ -165,15 +112,15 @@ namespace rental_and_shop_application
             int loadedBalance = 0;
             if (boughtList.Items.Count>0)
             {
-                 loadedBalance = Convert.ToInt32(data.loadBalance(RFID));
-                if (data.Insert(product.ID, shopID, RFID, time, dateNow, banyak))
+                 loadedBalance = Convert.ToInt32(data.loadBalance(tag));
+                if (data.Insert(product.ID, shopID, tag, time, dateNow, banyak))
                 {
-                    if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(banyak), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), RFID))
+                    if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(banyak), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), tag))
                     {
                         harga = loadedBalance - totalCost;
                         MessageBox.Show("Kebeli");
 
-                        BalanceLabel.Text = "Current Balance: " + data.loadBalance(RFID).ToString();
+                        BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
 
                     }
                 }
@@ -563,28 +510,10 @@ namespace rental_and_shop_application
         {
             if (!isReturn)
             {
-                RFID = e.Tag;
-                reader.LED = true;       // light on
-                balance = Convert.ToInt32(data.loadBalance(RFID));
+                tag = e.Tag;
+                balance = Convert.ToInt32(data.loadBalance(tag));
                 BalanceLabel.Text = "Current Balance: " + balance;
             }
-        }
-
-        void rfid_TagLost(object sender, TagEventArgs e)
-        {
-            reader.LED = false;      // light off
-        }
-
-        void rfid_Detach(object sender, DetachEventArgs e)
-        {
-            //lblAttached.Text = "Not Attached";
-        }
-
-        void rfid_Attach(object sender, AttachEventArgs e)
-        {
-            Phidgets.RFID phid = (Phidgets.RFID)sender;
-            //lblAttached.Text = "Attached: " + phid.Name;
-
         }
     }
 }

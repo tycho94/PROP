@@ -7,8 +7,8 @@
     <ProjectGuid>{FA3DBD27-B0EA-4DEC-B8CA-04FC7084BBF7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>rental_and_shop_application</RootNamespace>
-    <AssemblyName>rental and shop application</AssemblyName>
+    <RootNamespace>Shop_application</RootNamespace>
+    <AssemblyName>Shop_application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
