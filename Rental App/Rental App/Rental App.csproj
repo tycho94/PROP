@@ -102,6 +102,27 @@
   <ItemGroup>
     <None Include="Resources\gopro.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dcpowerbrick.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tent.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleeping bags.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MagLiteFlashlight.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laptops.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iPhone-3in1-Charger-cable-car-EbuyJo1-900x900.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Android Charger.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,7 +14,9 @@ namespace Rental_App
 {
     public partial class Return : Form
     {
-        public string RFID = "0a006f46d7";
+        //public string RFID = "0a006f46d7";
+        string RFID = Form1.RFID;
+        public static bool isReturn = false;
         RFID reader;
         Item product;
         Items listOfItems = new Items("listOfItems");
@@ -23,6 +25,8 @@ namespace Rental_App
         public Return()
         {
             InitializeComponent();
+
+            this.Activate();
 
             reader = new RFID();
             reader.Attach += new AttachEventHandler(rfid_Attach);
@@ -34,7 +38,7 @@ namespace Rental_App
 
             foreach (Item i in data.LoadUserItem(RFID))
             {
-                listOfItems.AddItem(i.Name, i.Price, i.Deposit, i.TotalLeft, i.iD);
+                listOfItems.AddItem(i.Name, i.Price, i.Deposit, i.Image, i.TotalLeft, i.iD);
                 lbItems.Items.Add(i.Name);
             }
         }
@@ -71,7 +75,7 @@ namespace Rental_App
 
             foreach (Item i in data.LoadUserItem(RFID))
             {
-                listOfItems.AddItem(i.Name, i.Price, i.Deposit, i.TotalLeft, i.iD);
+                listOfItems.AddItem(i.Name, i.Price, i.Deposit, i.Image, i.TotalLeft, i.iD);
                 lbItems.Items.Add(i.Name);
             }
  
@@ -98,6 +102,27 @@ namespace Rental_App
         private void lbItems_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Return_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            
+        }
+
+        private void Return_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+            //MessageBox.Show("Close");
+            this.Hide();
+            Form1 MainForm = new Form1();
+            MainForm.ShowDialog();
+            
+        }
+
+        private void Return_Load(object sender, EventArgs e)
+        {
+            this.Activate();
         }
     }
 }

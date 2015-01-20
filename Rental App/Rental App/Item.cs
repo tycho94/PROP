@@ -47,14 +47,14 @@ namespace Rental_App
         }
 
         //constructor
-        public Item(string name, double price, double deposit ,int totalLeft ,int id)
+        public Item(string name, double price, double deposit , string img,int totalLeft ,int id)
         {
             this.name = name;
             this.price = price;
             this.deposit = deposit;
             this.totalLeft = totalLeft;
             
-            //this.image = img;
+            this.image = img;
             this.ID = id;
            
         }
@@ -68,12 +68,12 @@ namespace Rental_App
         public void updateStock(int banyak, string op)
         {
 
-            if (op == "tambah")
+            if (op == "plus")
             {
                 totalLeft = totalLeft + banyak;
             }
 
-            else if (op == "kurang")
+            else if (op == "minus")
             {
                 totalLeft = totalLeft - banyak;
             }
