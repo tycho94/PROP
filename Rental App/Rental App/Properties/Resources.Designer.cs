@@ -63,26 +63,6 @@ namespace Rental_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Android_Charger {
-            get {
-                object obj = ResourceManager.GetObject("Android Charger", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap dcpowerbrick {
-            get {
-                object obj = ResourceManager.GetObject("dcpowerbrick", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap gopro {
             get {
                 object obj = ResourceManager.GetObject("gopro", resourceCulture);
@@ -96,56 +76,6 @@ namespace Rental_App.Properties {
         internal static System.Drawing.Bitmap ipad {
             get {
                 object obj = ResourceManager.GetObject("ipad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iPhone_3in1_Charger_cable_car_EbuyJo1_900x900 {
-            get {
-                object obj = ResourceManager.GetObject("iPhone-3in1-Charger-cable-car-EbuyJo1-900x900", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Laptops {
-            get {
-                object obj = ResourceManager.GetObject("Laptops", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MagLiteFlashlight {
-            get {
-                object obj = ResourceManager.GetObject("MagLiteFlashlight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sleeping_bags {
-            get {
-                object obj = ResourceManager.GetObject("sleeping bags", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Tent {
-            get {
-                object obj = ResourceManager.GetObject("Tent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

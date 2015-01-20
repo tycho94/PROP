@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65817ECE-EA33-4CEB-81CB-56C0180E3769}</ProjectGuid>
+    <ProjectGuid>{FA3DBD27-B0EA-4DEC-B8CA-04FC7084BBF7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rental_App</RootNamespace>
-    <AssemblyName>Rental App</AssemblyName>
+    <RootNamespace>Shop_application</RootNamespace>
+    <AssemblyName>Shop_application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -61,12 +61,6 @@
     <Compile Include="Items.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Return.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Return.Designer.cs">
-      <DependentUpon>Return.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,9 +74,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Return.resx">
-      <DependentUpon>Return.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,10 +88,76 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ipad.jpg" />
+    <None Include="Resources\burger.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\gopro.jpg" />
+    <None Include="Resources\ChickenNugget.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\corndog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotdog.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pizza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RI2226_1i4615french_fries.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kebab Original.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\large_TwoTacos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loempia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NachosBeef.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20120112-popeyes-refried-chicken-6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kibbeling-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Vodka.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite_Lata350_regular.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spa reine 50cl-500x500.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mountaindeweu_500_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Monster-Energy-Drink-24-oz-Can.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jack D.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cola_zero_01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Coca-Cola-33cl-CAN.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bavaria vles-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3023648-slide-1-pepsi-can.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fanta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jagermeister_Bottle.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Rental_App
+namespace Shop_application
 {
     static class Program
     {
@@ -16,8 +16,7 @@ namespace Rental_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            Application.Run(new Return());
+            Application.Run(new Shop());
         }
     }
 }
