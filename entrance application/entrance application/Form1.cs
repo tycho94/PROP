@@ -26,7 +26,6 @@ namespace entrance_application
             try
             {
                 Reader = new RFID();
-                //Reader.Attach += new AttachEventHandler(ReaderAttached);
                 Reader.Tag += new TagEventHandler(Entering);
                 Reader.open();
                 Reader.waitForAttachment(3000);
