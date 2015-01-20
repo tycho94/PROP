@@ -33,11 +33,11 @@ namespace rental_and_shop_application
             return null;
         }
 
-        public bool AddSnack(string nm, double pr, int Left, string img) 
+        public bool AddSnack(string nm, double pr, int Left, string ID, string img) 
         {
             if (GetItems(nm) == null)
             {
-                this.itemList.Add(new Item(nm, pr, Left, img));
+                this.itemList.Add(new Item(nm, pr, Left, ID, img));
                 return true;
 
             }

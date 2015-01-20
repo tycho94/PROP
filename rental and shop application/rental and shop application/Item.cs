@@ -12,8 +12,9 @@ namespace rental_and_shop_application
         private string name;
         private double price;
         private int totalLeft=0;
+        
+        private string id;
         private string image;
-
         //properties
         public string Name 
         { get { return name; } }
@@ -27,18 +28,25 @@ namespace rental_and_shop_application
             set { totalLeft = value; }
         }
 
-        public string Image 
+        public string ID 
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Image
         {
             get { return image; }
             set { image = value; }
         }
 
         //constructor
-        public Item(string name, double price, int totalLeft, string image) 
+        public Item(string name, double price, int totalLeft, string id, string image) 
         {
             this.name = name;
             this.price = price;
             this.totalLeft = totalLeft;
+            this.id = id;
             this.image = image;
         }
 

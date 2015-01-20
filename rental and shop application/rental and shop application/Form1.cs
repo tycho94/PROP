@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Phidgets;
+using Phidgets.Events;
 
 namespace rental_and_shop_application
 {
@@ -21,49 +23,69 @@ namespace rental_and_shop_application
         double totalPrice = 0;
         int Left = 0;
         object O;
+        public string RFID = "";
+        int shopID = 10;
+        bool isReturn = false;
+        double balance;
+        
+        RFID reader;
 
         List<Item> bought = new List<Item>();
         Item product;
+
+        DatabaseConnection data = new DatabaseConnection();
 
 
         public Shop()
         {
             InitializeComponent();
+
+            reader = new RFID();
+            reader.Attach += new AttachEventHandler(rfid_Attach);
+            reader.Detach += new DetachEventHandler(rfid_Detach);
+            reader.RFIDTag += new TagEventHandler(rfid_Tag);
+            reader.RFIDTagLost += new TagEventHandler(rfid_TagLost);
+            reader.Antenna = true;
+            reader.open();
             shop = new Items("shop");
     
             CreateDummyData();
+
             
             
         }
 
         public void CreateDummyData() 
         {
-            shop.AddSnack("Hamburger", 2.70, 200,"burger");
-            shop.AddSnack("Nugget", 1.50, 100,"ChickenNugget");
-            shop.AddSnack("Corn Dog",1 ,200,"corndog");
-            shop.AddSnack("Hot Dog", 2.5,200,"hotdog");
-            shop.AddSnack("Pizza", 6, 80,"pizza");
-            shop.AddSnack("Fries",1.5 ,200,"RI2226_1i4615french_fries");
-            shop.AddSnack("Durum", 3,200,"Kebab original");
-            shop.AddSnack("Taco", 3,200,"large_TwoTacos");
-            shop.AddSnack("Lumpia",2.5 ,200,"loempia");
-            shop.AddSnack("Nachos", 1.5,200,"NachosBeef");
-            shop.AddSnack("Kip Stukken", 2.5, 200, "20120112-popeyes-refried-chicken-6");
-            shop.AddSnack("Kibbeling", 3, 200, "kibbeling-2");
-            shop.AddSnack("Cola", 1, 200, "Coca-Cola-33cl-CAN");
-            shop.AddSnack("Fanta", 1, 200, "Fanta");
-            shop.AddSnack("Sprite", 1, 200, "Sprite_Lata350_regular");
-            shop.AddSnack("Cola-Zero", 1.2, 200, "cola_zero_01");
-            shop.AddSnack("Pepsi", 1, 200, "3023648-slide-1-pepsi-can");
-            shop.AddSnack("MTN Dew", 1, 200, "mountaindeweu_500_1");
-            shop.AddSnack("Bavaria", 1.95, 200, "Bavaria vles-2");
-            shop.AddSnack("Monster", 1.5, 200, "Monster-Energy-Drink-24-oz-Can");
-            shop.AddSnack("Spa", 0.8, 200, "spa reine 50cl-500x500");
-            shop.AddSnack("Jaeger", 15, 70, "Jagermeister_Bottle");
-            shop.AddSnack("Jack Daniels", 20, 50, "Jack D");
-            shop.AddSnack("Vodka", 17, 60, "Vodka");
-            
+            //shop.AddSnack("Hamburger", 2.70, 200);
+            //shop.AddSnack("Nugget", 1.50, 100);
+            //shop.AddSnack("Corn Dog",1 ,200,"corndog");
+            //shop.AddSnack("Hot Dog", 2.5,200,"hotdog");
+            //shop.AddSnack("Pizza", 6, 80,"pizza");
+            //shop.AddSnack("Fries",1.5 ,200,"RI2226_1i4615french_fries");
+            //shop.AddSnack("Durum", 3,200,"Kebab original");
+            //shop.AddSnack("Taco", 3,200,"large_TwoTacos");
+            //shop.AddSnack("Lumpia",2.5 ,200,"loempia");
+            //shop.AddSnack("Nachos", 1.5,200,"NachosBeef");
+            //shop.AddSnack("Kip Stukken", 2.5, 200, "20120112-popeyes-refried-chicken-6");
+            //shop.AddSnack("Kibbeling", 3, 200, "kibbeling-2");
+            //shop.AddSnack("Cola", 1, 200, "Coca-Cola-33cl-CAN");
+            //shop.AddSnack("Fanta", 1, 200, "Fanta");
+            //shop.AddSnack("Sprite", 1, 200, "Sprite_Lata350_regular");
+            //shop.AddSnack("Cola-Zero", 1.2, 200, "cola_zero_01");
+            //shop.AddSnack("Pepsi", 1, 200, "3023648-slide-1-pepsi-can");
+            //shop.AddSnack("MTN Dew", 1, 200, "mountaindeweu_500_1");
+            //shop.AddSnack("Bavaria", 1.95, 200, "Bavaria vles-2");
+            //shop.AddSnack("Monster", 1.5, 200, "Monster-Energy-Drink-24-oz-Can");
+            //shop.AddSnack("Spa", 0.8, 200, "spa reine 50cl-500x500");
+            //shop.AddSnack("Jaeger", 15, 70, "Jagermeister_Bottle");
+            //shop.AddSnack("Jack Daniels", 20, 50, "Jack D");
+            //shop.AddSnack("Vodka", 17, 60, "Vodka");
 
+            foreach (Item i in data.LoadItemInfo())
+            {
+                shop.AddSnack(i.Name, i.Price, i.TotalLeft, i.ID,i.Image);
+            }
 
  
         }
@@ -88,9 +110,8 @@ namespace rental_and_shop_application
            labelCost.Text = "Cost: " + product.Price.ToString();
            labelProduct.Text ="Product: "+product.TotalLeft.ToString();
            //MessageBox.Show(i.AsString());
-           this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\burger.png");
-           
-         
+           O = Properties.Resources.ResourceManager.GetObject(product.Image);
+           pictureBoxBIG.Image = (Image)O;
 
            
            
@@ -135,7 +156,32 @@ namespace rental_and_shop_application
 
         private void button3_Click(object sender, EventArgs e)
         {
+            DateTime myDate = DateTime.Now;
+            string dateNow = myDate.ToString("yyyy-MM-dd");
+            DateTime Time = DateTime.Now;
+            string time = Time.ToString("H:mm:ss");
+            double banyak = Convert.ToDouble(numericUpDown1.Value);
+            double harga;
+            int loadedBalance = 0;
+            if (boughtList.Items.Count>0)
+            {
+                 loadedBalance = Convert.ToInt32(data.loadBalance(RFID));
+                if (data.Insert(product.ID, shopID, RFID, time, dateNow, banyak))
+                {
+                    if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(banyak), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), RFID))
+                    {
+                        harga = loadedBalance - totalCost;
+                        MessageBox.Show("Kebeli");
 
+                        BalanceLabel.Text = "Current Balance: " + data.loadBalance(RFID).ToString();
+
+                    }
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Order First.");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -164,8 +210,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\ChickenNugget.jpg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void CorndogPctBox_Click(object sender, EventArgs e)
@@ -178,8 +224,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\corndog.png");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void HotdogPctBox_Click(object sender, EventArgs e)
@@ -187,12 +233,12 @@ namespace rental_and_shop_application
             //this.cost = 2.5;
             //labelCost.Text = "Cost: " + this.cost.ToString() ;
             //this.productLeft = 200;
-            product = shop.GetItems("Hot Dog");
+            product = shop.GetItems("Hotdog");
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\hotdog.jpg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void pizzaPctBox_Click(object sender, EventArgs e)
@@ -204,8 +250,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\pizza.png");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void FriesPctBox_Click(object sender, EventArgs e)
@@ -213,12 +259,12 @@ namespace rental_and_shop_application
             //this.cost = 1.5;
             //labelCost.Text = "Cost: " + this.cost.ToString()  ;
             //this.productLeft = 200;
-            product = shop.GetItems("Fries");
+            product = shop.GetItems("French Fries");
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\RI2226_1i4615french_fries.jpg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void DurumPctBox_Click(object sender, EventArgs e)
@@ -230,8 +276,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\Kebab Original.png");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void TacoPctBox_Click(object sender, EventArgs e)
@@ -243,8 +289,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\large_TwoTacos.png");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void LoempiaPctBox_Click(object sender, EventArgs e)
@@ -256,8 +302,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\loempia.jpg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void NachosPctBox_Click(object sender, EventArgs e)
@@ -269,7 +315,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\NachosBeef.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
             
         }
 
@@ -282,7 +329,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\20120112-popeyes-refried-chicken-6.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
             
         }
 
@@ -295,36 +343,44 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\Shared Folders\Documents\Visual Studio 2013\Projects\rental and shop application\rental and shop application\Resources\kibbeling-2.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
             
         }
 
         private void orderBtn_Click(object sender, EventArgs e)
         {
-            
             double banyak = Convert.ToDouble(numericUpDown1.Value);
-            totalCost = product.Price * banyak;
+            if (numericUpDown1.Value > 0)
+            {
 
-            bought.Add(product);
-            product.updateStock(Convert.ToInt32(banyak), "kurang");
+                totalCost = product.Price * banyak;
 
-            //foreach (Item x in bought)
-            //{
-            //    string nama;
-            //    int jumlah;
-            //    int totalHarga;
+                bought.Add(product);
+                product.updateStock(Convert.ToInt32(banyak), "kurang");
 
-
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-            boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
-            totalPrice = totalPrice + totalCost;
-            //}
+                //foreach (Item x in bought)
+                //{
+                //    string nama;
+                //    int jumlah;
+                //    int totalHarga;
 
 
+                labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+                boughtList.Items.Add(product.AsString() + ", order: " + banyak + ", total: " + totalCost);
+                totalPrice = totalPrice + totalCost;
+                //}
 
-            labelTotal.Text = "Total cost: " + totalPrice;
-            //boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
-        //    boughtList.Items.Add("Product: " + pName + ", Harga:");
+
+
+                labelTotal.Text = "Total cost: " + totalPrice;
+                //boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
+                //    boughtList.Items.Add("Product: " + pName + ", Harga:");
+            }
+            else 
+            {
+                MessageBox.Show("Portion must not be 0");
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -342,7 +398,7 @@ namespace rental_and_shop_application
                 bought.RemoveAt(selected);
                 boughtList.Items.RemoveAt(selected);
 
-                totalPrice = totalPrice - selectedPrice;
+                totalPrice = totalPrice - selectedPrice*banyak;
                
                 product.updateStock(Convert.ToInt32(banyak), "tambah");
 
@@ -357,11 +413,12 @@ namespace rental_and_shop_application
 
         private void ColaPctBox_Click(object sender, EventArgs e)
         {
-            product = shop.GetItems("Cola");
+            product = shop.GetItems("Coca Cola");
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Coca-Cola-33cl-CAN.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void FantaPctBox_Click(object sender, EventArgs e)
@@ -370,7 +427,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Fanta.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void SpritePctBox_Click(object sender, EventArgs e)
@@ -379,7 +437,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Sprite_Lata350_regular.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void ColaZeroPctBox_Click(object sender, EventArgs e)
@@ -388,7 +447,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\cola_zero_01.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void PepsiPctBox_Click(object sender, EventArgs e)
@@ -397,16 +457,18 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\3023648-slide-1-pepsi-can.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void MtnDewPctBox_Click(object sender, EventArgs e)
         {
-            product = shop.GetItems("MTN Dew");
+            product = shop.GetItems("Mountain Dew");
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\mountaindeweu_500_1.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void BavariaPctBox_Click(object sender, EventArgs e)
@@ -415,7 +477,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Bavaria vles-2.png");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void MonsterPctBox_Click(object sender, EventArgs e)
@@ -424,16 +487,18 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Monster-Energy-Drink-24-oz-Can.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image); 
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void SpaBlauwPctBox_Click(object sender, EventArgs e)
         {
-            product = shop.GetItems("Spa");
+            product = shop.GetItems("Spa Water");
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\spa reine 50cl-500x500.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void JaegerMeisterPctBox_Click(object sender, EventArgs e)
@@ -442,7 +507,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Jagermeister_Bottle.jpg");
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void JackDPctBox_Click(object sender, EventArgs e)
@@ -451,8 +517,8 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Jack D.jpg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void AbsoluteVodkaPctBox_Click(object sender, EventArgs e)
@@ -461,20 +527,63 @@ namespace rental_and_shop_application
             labelCost.Text = "Cost: " + product.Price.ToString();
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            this.pictureBoxBIG.Image = Image.FromFile(@"\\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\Resources\Vodka.jpeg");
-            
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             product = shop.GetItems(textBox1.Text);
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-            O = Properties.Resources.ResourceManager.GetObject(product.Image); //Return an object from the image chan1.png in the project
-            pictureBoxBIG.Image = (Image)O;
-            //Image = (Image)O; //Set the Imag
+            if (textBox1 != null )
+            {
+                if (product != null)
+                {
+                    labelCost.Text = "Cost: " + product.Price.ToString();
+                    labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
+                    O = Properties.Resources.ResourceManager.GetObject(product.Image); 
+                    pictureBoxBIG.Image = (Image)O;
+                    //Image = (Image)O; //Set the Imag
+                }
+                else 
+                {
+                    MessageBox.Show("inputu.");
+                }
+            }
+            
+            else
+            {
+                MessageBox.Show("we are deeply sorry, we don't have that menu.");
+            }
+
+        }
+        // RFID
+        void rfid_Tag(object sender, TagEventArgs e)
+        {
+            if (!isReturn)
+            {
+                RFID = e.Tag;
+                reader.LED = true;       // light on
+                balance = Convert.ToInt32(data.loadBalance(RFID));
+                BalanceLabel.Text = "Current Balance: " + balance;
+            }
+        }
+
+        void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            reader.LED = false;      // light off
+        }
+
+        void rfid_Detach(object sender, DetachEventArgs e)
+        {
+            //lblAttached.Text = "Not Attached";
+        }
+
+        void rfid_Attach(object sender, AttachEventArgs e)
+        {
+            Phidgets.RFID phid = (Phidgets.RFID)sender;
+            //lblAttached.Text = "Attached: " + phid.Name;
 
         }
     }

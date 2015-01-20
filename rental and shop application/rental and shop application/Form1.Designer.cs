@@ -45,6 +45,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBoxBIG = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.JackDPctBox = new System.Windows.Forms.PictureBox();
             this.burgerPctBox = new System.Windows.Forms.PictureBox();
             this.nuggetPctBox = new System.Windows.Forms.PictureBox();
@@ -70,8 +72,7 @@
             this.FantaPctBox = new System.Windows.Forms.PictureBox();
             this.ColaPctBox = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BalanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBIG)).BeginInit();
@@ -124,7 +125,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(47, 547);
+            this.button3.Location = new System.Drawing.Point(47, 570);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(65, 23);
             this.button3.TabIndex = 8;
@@ -224,7 +225,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(175, 547);
+            this.buttonCancel.Location = new System.Drawing.Point(188, 570);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 51;
@@ -305,6 +306,23 @@
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Products";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(84, 54);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 43;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(59, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(121, 20);
+            this.textBox1.TabIndex = 42;
             // 
             // JackDPctBox
             // 
@@ -596,6 +614,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BalanceLabel);
             this.groupBox3.Controls.Add(this.boughtList);
             this.groupBox3.Controls.Add(this.labelTotal);
             this.groupBox3.Controls.Add(this.button3);
@@ -607,22 +626,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Purchasing";
             // 
-            // button2
+            // BalanceLabel
             // 
-            this.button2.Location = new System.Drawing.Point(84, 54);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(59, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 42;
+            this.BalanceLabel.AutoSize = true;
+            this.BalanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BalanceLabel.Location = new System.Drawing.Point(6, 516);
+            this.BalanceLabel.Name = "BalanceLabel";
+            this.BalanceLabel.Size = new System.Drawing.Size(166, 24);
+            this.BalanceLabel.TabIndex = 52;
+            this.BalanceLabel.Text = "Current Balance:";
             // 
             // Shop
             // 
@@ -720,6 +732,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label BalanceLabel;
     }
 }
 
