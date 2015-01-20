@@ -19,6 +19,11 @@ namespace Rental_App
 
         private string getItem = "SELECT * FROM RENTAL";
 
+        private string updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
+
+        private string updateStock = "UPDATE RENTAL SET RENTAL_STOCK = @STOCK WHERE RENTAL_ITEM_ID = @IDR";
+
+
         //private string getShop = "SELECT SHOP_ID FROM RENTAL_SHOP";
 
         //private string updateStock = "UPDATE RENTAL SET RENTAL_STOCK = @STOCK - @QUANTITY WHERE RENTAL_ITEM_ID = @IDR";
@@ -32,170 +37,132 @@ namespace Rental_App
         MySqlDataReader rdr = null;
         List<Item> list;
 
-          public DatabaseConnection()
+        public DatabaseConnection()
         {
             con = new MySqlConnection(connectionInfo);
             con.Open();
         }
 
-          public int loadBalance(string id)
-          {
-              int balance = -1;
+        public int loadBalance(string id)
+        {
+            int balance = -1;
 
-              cmd = new MySqlCommand(getBalance, con);
-              cmd.Parameters.AddWithValue("@IDO", id);
+            cmd = new MySqlCommand(getBalance, con);
+            cmd.Parameters.AddWithValue("@IDO", id);
 
-              rdr = cmd.ExecuteReader();
+            rdr = cmd.ExecuteReader();
 
-              while (rdr.Read())
-              {
-                  balance = rdr.GetInt32(0);
-              }
+            while (rdr.Read())
+            {
+                balance = rdr.GetInt32(0);
+            }
 
-              rdr.Close();
-              return balance;
+            rdr.Close();
+            return balance;
 
-          }
+        }
 
-          public List<Item> LoadItemInfo() 
-          {
-              list = new List<Item>();
-              cmd = new MySqlCommand(getItem, con);
-              rdr = cmd.ExecuteReader();
+        public List<Item> LoadItemInfo()
+        {
+            list = new List<Item>();
+            cmd = new MySqlCommand(getItem, con);
+            rdr = cmd.ExecuteReader();
 
-              while (rdr.Read())
-              {
-                  var nama = rdr["RENTAL_NAME"];
-                  var rcst = rdr["RENTAL_PRICE"];
-                  var rdpst = rdr["RENTAL_DEPOSIT"];
-                  var img = rdr["IMAGE"];
-                  var  stock = rdr["RENTAL_STOCK"];
-                  var id = rdr["RENTAL_ITEM_ID"];
+            while (rdr.Read())
+            {
+                var nama = rdr["RENTAL_NAME"];
+                var rcst = rdr["RENTAL_PRICE"];
+                var rdpst = rdr["RENTAL_DEPOSIT"];
+                var img = rdr["IMAGE"];
+                var stock = rdr["RENTAL_STOCK"];
+                var id = rdr["RENTAL_ITEM_ID"];
 
-                  list.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst),Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
-              }
+                list.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
+            }
 
-              rdr.Close();
-              return list;
+            rdr.Close();
+            return list;
 
-          }
+        }
 
 
-          public List<Item> LoadUserItem(string RFID)
-          {
-              string getUserItem = "SELECT * FROM Rental Where Rental_item_id IN (Select RENTAL_ID FROM renteditem WHERE RFID = '" + RFID + "')";
+        public List<Item> LoadUserItem(string RFID)
+        {
+            string getUserItem = "SELECT * FROM Rental Where Rental_item_id IN (Select RENTAL_ID FROM renteditem WHERE RFID = '" + RFID + "')";
 
-              List<Item> result = new List<Item>();
-              cmd = new MySqlCommand(getUserItem, con);
-              rdr = cmd.ExecuteReader();
+            List<Item> result = new List<Item>();
+            cmd = new MySqlCommand(getUserItem, con);
+            rdr = cmd.ExecuteReader();
 
-              while (rdr.Read())
-              {
-                  var nama = rdr["RENTAL_NAME"];
-                  var rcst = rdr["RENTAL_PRICE"];
-                  var rdpst = rdr["RENTAL_DEPOSIT"];
-                  var img = rdr["IMAGE"];
-                  var stock = rdr["RENTAL_STOCK"];
-                  var id = rdr["RENTAL_ITEM_ID"];
-                  result.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
-              }
+            while (rdr.Read())
+            {
+                var nama = rdr["RENTAL_NAME"];
+                var rcst = rdr["RENTAL_PRICE"];
+                var rdpst = rdr["RENTAL_DEPOSIT"];
+                var img = rdr["IMAGE"];
+                var stock = rdr["RENTAL_STOCK"];
+                var id = rdr["RENTAL_ITEM_ID"];
+                result.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
+            }
 
-              rdr.Close();
-              return result;
+            rdr.Close();
+            return result;
 
-          }
-          //public List<Item> LoadShop() 
-          //{
-          //    list = new List<Item>();
-          //    cmd = new MySqlCommand(getShop, con);
-          //    rdr = cmd.ExecuteReader();
+        }
+        //public List<Item> LoadShop() 
+        //{
+        //    list = new List<Item>();
+        //    cmd = new MySqlCommand(getShop, con);
+        //    rdr = cmd.ExecuteReader();
 
-          //    while (rdr.Read()) 
-          //    {
-          //        var ShopID = rdr["SHOP_ID"];
+        //    while (rdr.Read()) 
+        //    {
+        //        var ShopID = rdr["SHOP_ID"];
 
-          //        list.Add(new Item(ShopID.ToString()));
-          //    }
-          //}
+        //        list.Add(new Item(ShopID.ToString()));
+        //    }
+        //}
 
-          public Boolean insert(int RID, int SID, string RFID, string DateRent, string DateReturn, int deposit) 
-          {
+        public Boolean insert(int RID, int SID, string RFID, string DateRent, string DateReturn, int deposit)
+        {
 
-              string insertRented = "INSERT INTO `dbi289514`.`renteditem` (`Rental_ID`, `ShopID`, `RFID`, `Date_Rented`, `Return_Date`, `Deposit`)   VALUES ('" + RID + "', '" + SID + "', '" + RFID + "', '" + DateRent + "', '" + DateReturn + "', '" + deposit + "')";
+            string insertRented = "INSERT INTO `dbi289514`.`renteditem` (`Rental_ID`, `ShopID`, `RFID`, `Date_Rented`, `Return_Date`, `Deposit`)   VALUES ('" + RID + "', '" + SID + "', '" + RFID + "', '" + DateRent + "', '" + DateReturn + "', '" + deposit + "')";
 
-              try
-              {
-                  cmd = new MySqlCommand(insertRented, con);
-                  cmd.ExecuteNonQuery();
+            try
+            {
+                cmd = new MySqlCommand(insertRented, con);
+                cmd.ExecuteNonQuery();
 
-                  return true;
-              }
-              catch 
-              {
-                  return false;
-              }
-          }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-          public Boolean Stocks(int stock, string operation, int quantity, int RId) 
-          {
-              string updateStock = ""; 
+        public Boolean Stocks(int stock, int quantity, int RId)
+        {
+                cmd = new MySqlCommand(updateStock, con);
+                cmd.Parameters.AddWithValue("@STOCK", stock - quantity);
+                cmd.Parameters.AddWithValue("@IDR", RId);
+                cmd.ExecuteNonQuery();
+                return true;
 
-              try
-              {
-                  if (operation == "-")
-                  {
-                      updateStock = "UPDATE RENTAL SET RENTAL_STOCK = @STOCK - @QUANTITY WHERE RENTAL_ITEM_ID = @IDR";
-                  }
-                  else
-                  {
-                      updateStock = "UPDATE RENTAL SET RENTAL_STOCK = @STOCK + @QUANTITY WHERE RENTAL_ITEM_ID = @IDR";
-                  }
+        }
 
-                  cmd = new MySqlCommand(updateStock, con);
-                  cmd.Parameters.AddWithValue("@STOCK", stock);
-                  cmd.Parameters.AddWithValue("@OPERATION", operation);
-                  cmd.Parameters.AddWithValue("@QUANTITY", quantity);
-                  cmd.Parameters.AddWithValue("@IDR", RId);
-                  cmd.ExecuteNonQuery();
+        public Boolean Balance(double balance, double price, string id)
+        {
+            cmd = new MySqlCommand(updateBalance, con);
+            cmd.Parameters.AddWithValue("@BALANCE", balance - price);
+            cmd.Parameters.AddWithValue("@IDO", id);
+            cmd.ExecuteNonQuery();
+            return true;
 
-                  return true;
-              }
-              catch
-              {
-                  return false;
-              }
-          }
+        }
 
-          public Boolean Balance(double balance, string operation, double price, string Vid) 
-          {
-              string updateBalance = "";
-              try
-              {
-                  if (operation == "-")
-                  {
-                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
-                  }
-                  else
-                  {
-                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
-                  }
-
-                  cmd = new MySqlCommand(updateBalance, con);
-                  cmd.Parameters.AddWithValue("@BALANCE", balance);
-                  cmd.Parameters.AddWithValue("@OPERATION", operation);
-                  cmd.Parameters.AddWithValue("@PRICE", price);
-                  cmd.Parameters.AddWithValue("@IDO", Vid);
-
-                  cmd.ExecuteNonQuery();
-                  return true;
-              }
-              catch 
-              {
-                  return false;
-              }
-          }
-
-        public bool deleteRent(int RID, string rfid){
+        public bool deleteRent(int RID, string rfid)
+        {
             string deleteRents = "DELETE FROM `dbi289514`.`renteditem` WHERE `renteditem`.`Rental_ID` = " + RID + " AND `renteditem`.`RFID` = \'" + rfid + "\'";
             try
             {

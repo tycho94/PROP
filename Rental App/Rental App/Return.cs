@@ -58,7 +58,7 @@ namespace Rental_App
 
                 lbItems.Items.RemoveAt(selected);
 
-                if (data.Stocks(product.TotalLeft, "+", 1, product.iD) && data.deleteRent(product.iD, RFID))
+                if (data.Stocks(product.TotalLeft, 1, product.iD) && data.deleteRent(product.iD, RFID))
                 {
                     MessageBox.Show("Returned!");
                 }

@@ -48,7 +48,7 @@ namespace Rental_App
             rent = new Items("rent");
             CreateDummyData();
             //balance = Convert.ToInt32(data.loadBalance(RFID));
-            shopID = 10;
+            shopID = 11;
 
 
         }
@@ -104,27 +104,11 @@ namespace Rental_App
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-
-            int selected;
-            double selectedPrice;
-
-            double quantity = Convert.ToDouble(numericUpDown1.Value);
-
-            if (this.RentList.SelectedIndex >= 0)
-            {
-                selected = this.RentList.SelectedIndex;
-                selectedPrice = Convert.ToDouble(borrowed[selected].Price);
-
-                borrowed.RemoveAt(selected);
-                RentList.Items.RemoveAt(selected);
-
-                totalPrice = totalPrice - selectedPrice * quantity;
-
-                product.updateStock(Convert.ToInt32(quantity), "plus");
-
-                labelTotal.Text = "Total cost: " + totalPrice;
-                labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-            }
+            RentList.Items.Clear();
+            totalPrice = 0;
+            totalCost = 0;
+            labelTotal.Text = "Total cost: ";
+            labelProduct.Text = "Product: ";
         }
 
 
@@ -171,9 +155,9 @@ namespace Rental_App
 
                     if (data.insert(product.iD, shopID, RFID, dateNow, dateReturn, Convert.ToInt32(product.Deposit)))
                     {
-                        if (data.Stocks(product.TotalLeft + Convert.ToInt32(quantity), "-", Convert.ToInt32(quantity), product.iD) && data.Balance(loadedBalance, "-", Convert.ToInt32(totalPrice), RFID))
+                        if (data.Stocks(product.TotalLeft + Convert.ToInt32(quantity), Convert.ToInt32(quantity), product.iD))
                         {
-
+                            data.Balance(loadedBalance, Convert.ToInt32(totalPrice), RFID);
                             balance = data.loadBalance(RFID);
                             BalanceLabel.Text = "Current Balance:" + balance.ToString();
                             MessageBox.Show("rented");
@@ -205,17 +189,6 @@ namespace Rental_App
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             isReturn = true;
-            //Return form2 = new Return();
-
-            //this.Hide();
-            //form2.ShowDialog();
-            //form2.Activate();
-            //this.Close();
-            //System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
-            //t.Start();
-            //this.Close();
-
-            this.Hide();
             Return form2 = new Return();
             form2.ShowDialog();
         }
