@@ -97,12 +97,12 @@ namespace Shop_application
             //  }
         }
 
-        public Boolean Balance(double balance, double price, string id)
+        public Boolean SetBalance(double balance, double price, int count, string id)
         {
             try
             {
                 cmd = new MySqlCommand(updateBalance, con);
-                cmd.Parameters.AddWithValue("@BALANCE", (balance - price));
+                cmd.Parameters.AddWithValue("@BALANCE", (balance - (price*count)));
                 cmd.Parameters.AddWithValue("@IDO", id);
 
                 cmd.ExecuteNonQuery();
@@ -119,19 +119,13 @@ namespace Shop_application
 
         public Boolean Insert(string ID, int SID, string RFID, string TIME, string DATE, double QUANTITY)
         {
+           
             string insert = "INSERT INTO `dbi289514`.`itemsold` (`Item_ID`, `ShopID`, `RFID`, `EmpNr`, `time`, `Date`, `Quantity`) VALUES ('" + ID + "', '" + SID + "', '" + RFID + "', '112983', '" + TIME + "', '" + DATE + "', '" + QUANTITY + "')";
-            try
-            {
+            
                 cmd = new MySqlCommand(insert, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
-            }
-            catch
-            {
-                con.Close();
-                return false;
-            }
         }
 
 

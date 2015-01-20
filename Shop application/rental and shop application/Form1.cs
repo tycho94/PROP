@@ -77,12 +77,10 @@ namespace Shop_application
 
         private void btn_Buy(object sender, EventArgs e)
         {
-            DateTime myDate = DateTime.Now;
-            string dateNow = myDate.ToString("yyyy-MM-dd");
-            string time = myDate.ToString("H:mm:ss");
+            string dateNow = DateTime.Now.ToString("yyyy-MM-dd");
+            string time = DateTime.Now.ToString("H:mm:ss");
             int count = Convert.ToInt32(numericUpDown1.Value);
-            double newbalance;
-            double loadedBalance = 0;
+            double loadedBalance;
             if (boughtList.Items.Count > 0)
             {
 
@@ -95,19 +93,24 @@ namespace Shop_application
                     data = new DatabaseConnection();
                     loadedBalance = data.loadBalance(tag);
                     data = new DatabaseConnection();
-                    if (data.Insert(product.ID, 10, tag, time, dateNow, count))
+                    if (loadedBalance < product.Price)
                     {
-                        data = new DatabaseConnection();
-                        if (data.UpdateStock(product.TotalLeft, count, product.ID) && data.Balance(loadedBalance, product.Price, tag))
+                        MessageBox.Show("Need more money");
+                    }
+                    else
+                    {
+                        if (data.Insert(product.ID, 10, tag, time, dateNow, count))
                         {
-                            newbalance = loadedBalance - totalCost;
-                            MessageBox.Show("Bought.");
                             data = new DatabaseConnection();
-                            BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
+                            if (data.UpdateStock(product.TotalLeft, count, product.ID) && data.SetBalance(loadedBalance, product.Price, count, tag))
+                            {
+                                MessageBox.Show("Bought.");
+                                data = new DatabaseConnection();
+                                BalanceLabel.Text = "Current Balance: " + String.Format("{0:0.00}", data.loadBalance(tag));
+                            }
                         }
                     }
                 }
-
             }
             else
             {
@@ -153,6 +156,7 @@ namespace Shop_application
 
             product.updateStock(Convert.ToInt32(count), "add");
             totalCost = 0;
+            totalPrice = 0;
             labelTotal.Text = "Total cost: ";
             labelProduct.Text = "Product: ";
 
@@ -224,6 +228,7 @@ namespace Shop_application
         private void DurumPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Durum");
+            pictureBoxBIG.ImageLocation = "C:/Users/Tycho/Documents/School/Fontys/ProP/PROP/Shop application/rental and shop application/Resources/Kebab Original.png";
         }
         private void TacoPctBox_Click(object sender, EventArgs e)
         {
