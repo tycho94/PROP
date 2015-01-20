@@ -20,9 +20,9 @@ namespace Shop_application
 
         private string getItem = "SELECT * FROM ITEM";
 
-        //private string updateStock = "UPDATE ITEM SET ITEM_STOCK = @STOCK - @QUANTITY WHERE ITEMID = @IID";
+        private string updateStock = "UPDATE ITEM SET ITEM_STOCK = @QUANTITY WHERE ITEMID = @IID";
 
-        private string updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE - @PRICE WHERE RFID = @IDO";
+        private string updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
 
         private string getBalance = "SELECT BALANCE FROM VISITOR WHERE  RFID = @IDO";
 
@@ -39,27 +39,24 @@ namespace Shop_application
         }
 
 
-        public string loadBalance(string id)
+        public double loadBalance(string id)
         {
-            string blnc = "";
-
-            cmd = new MySqlCommand(getBalance, con);
-            cmd.Parameters.AddWithValue("@IDO", id);
-
-            rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
+            if (id != null)
             {
-                var blc = rdr["BALANCE"];
-                blnc = blc.ToString();
+                double balance = 0;
+                cmd = new MySqlCommand(getBalance, con);
+                cmd.Parameters.AddWithValue("@IDO", id);
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    balance = rdr.GetDouble(0);
+                }
+                rdr.Close();
+                con.Close();
+                return balance;
             }
-
-            rdr.Close();
-            con.Close();
-            return blnc;
-
-
-
+            else
+                return -1;
         }
 
         public List<Item> LoadItemInfo()
@@ -84,15 +81,29 @@ namespace Shop_application
             return list;
         }
 
-        public Boolean Balance(int balance,  int price, string Vid)
+        public Boolean UpdateStock(int stock, double bought, string itemid)
+        {
+            // try
+            // {
+            cmd = new MySqlCommand(updateStock, con);
+            cmd.Parameters.AddWithValue("@IID", itemid);
+            cmd.Parameters.AddWithValue("@QUANTITY", (stock - bought));
+            cmd.ExecuteNonQuery();
+            return true;
+            //  }
+            //  catch
+            //  {
+            //      return false;
+            //  }
+        }
+
+        public Boolean Balance(double balance, double price, string id)
         {
             try
             {
                 cmd = new MySqlCommand(updateBalance, con);
-                cmd.Parameters.AddWithValue("@BALANCE", balance);
-                //cmd.Parameters.AddWithValue("@OPERATION", operation);
-                cmd.Parameters.AddWithValue("@PRICE", price);
-                cmd.Parameters.AddWithValue("@IDO", Vid);
+                cmd.Parameters.AddWithValue("@BALANCE", (balance - price));
+                cmd.Parameters.AddWithValue("@IDO", id);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -103,30 +114,12 @@ namespace Shop_application
                 con.Close();
                 return false;
             }
+
         }
 
-        public Boolean Stocks(int stock, string operation, int quantity, string Iid)
+        public Boolean Insert(string ID, int SID, string RFID, string TIME, string DATE, double QUANTITY)
         {
-            string updateStock = "UPDATE ITEM SET ITEM_STOCK = "+stock+"  WHERE ITEMID = '"+Iid +"'";
-            try
-            {
-                cmd = new MySqlCommand(updateStock, con);
-                //cmd.Parameters.AddWithValue("@STOCK", stock);
-                //cmd.Parameters.AddWithValue("@OPERATION", operation);
-                //cmd.Parameters.AddWithValue("@QUANTITY", quantity);
-                //cmd.Parameters.AddWithValue("@IID", Iid);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public Boolean Insert(string ID, int SID, string RFID, string TIME, string DATE, double QUANTITY) 
-        {
-            string insert= "INSERT INTO `dbi289514`.`itemsold` (`Item_ID`, `ShopID`, `RFID`, `EmpNr`, `time`, `Date`, `Quantity`) VALUES ('"+ID+"', '"+SID+"', '"+RFID+"', '112983', '"+TIME+"', '"+DATE+"', '"+QUANTITY+"')";
+            string insert = "INSERT INTO `dbi289514`.`itemsold` (`Item_ID`, `ShopID`, `RFID`, `EmpNr`, `time`, `Date`, `Quantity`) VALUES ('" + ID + "', '" + SID + "', '" + RFID + "', '112983', '" + TIME + "', '" + DATE + "', '" + QUANTITY + "')";
             try
             {
                 cmd = new MySqlCommand(insert, con);
@@ -134,11 +127,13 @@ namespace Shop_application
                 con.Close();
                 return true;
             }
-            catch 
+            catch
             {
                 con.Close();
                 return false;
             }
         }
+
+
     }
 }

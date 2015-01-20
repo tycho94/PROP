@@ -11,15 +11,14 @@ namespace Shop_application
         //fields
         private string name;
         private double price;
-        private int totalLeft=0;
-        
+        private int totalLeft = 0;
         private string id;
         private string image;
         //properties
-        public string Name 
+        public string Name
         { get { return name; } }
 
-        public double Price 
+        public double Price
         { get { return price; } }
 
         public int TotalLeft
@@ -28,7 +27,7 @@ namespace Shop_application
             set { totalLeft = value; }
         }
 
-        public string ID 
+        public string ID
         {
             get { return id; }
             set { id = value; }
@@ -41,7 +40,7 @@ namespace Shop_application
         }
 
         //constructor
-        public Item(string name, double price, int totalLeft, string id, string image) 
+        public Item(string name, double price, int totalLeft, string id, string image)
         {
             this.name = name;
             this.price = price;
@@ -50,23 +49,23 @@ namespace Shop_application
             this.image = image;
         }
 
-        public string AsString() 
+        public string AsString()
         {
             string s = this.name + ", price: " + String.Format("{0:0.00}", price) + ", left in stock: " + totalLeft;
             return s;
         }
 
-        public void updateStock(int banyak, string op)
+        public void updateStock(int count, string op)
         {
 
             if (op == "add")
             {
-                totalLeft = totalLeft + banyak;
+                totalLeft = totalLeft + count;
             }
 
             else if (op == "minus")
             {
-                totalLeft = totalLeft - banyak;
+                totalLeft = totalLeft - count;
             }
         }
 

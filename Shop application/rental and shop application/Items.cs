@@ -11,8 +11,6 @@ namespace Shop_application
         private string name;
         private List<Item> itemList;
 
-        //public List<Item> Itemlist { get { return itemList; } }
-
         public Items(string nm) 
         {
             this.name = nm;
@@ -22,15 +20,15 @@ namespace Shop_application
 
         public Item GetItems(string nm) 
         {
-            int i = 0;
-            while (i < itemList.Count) 
+            for (int i = 0; i < itemList.Count(); i++)
             {
-                if (itemList[i].Name == nm)
+                if(itemList[i].Name == nm)
+                {
                     return itemList[i];
-                else i++;
-
+                }
             }
             return null;
+
         }
 
         public bool AddSnack(string nm, double pr, int Left, string ID, string img) 
@@ -43,10 +41,5 @@ namespace Shop_application
             }
             else return false;
         }
-
-        
-
-        
-        
     }
 }

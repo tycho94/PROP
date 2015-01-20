@@ -14,19 +14,10 @@ namespace Shop_application
 {
     public partial class Shop : Form
     {
-
-
-        // double cost = 0;
-        //int productLeft = 0;
         double totalCost = 0;
         private Items shop;
         double totalPrice = 0;
-        object O;
-        public string tag = "";
-        int shopID = 10;
-        bool isReturn = false;
-        double balance;
-
+        string tag = null;
         RFID Reader;
 
         List<Item> bought = new List<Item>();
@@ -84,45 +75,126 @@ namespace Shop_application
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_Buy(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
             string dateNow = myDate.ToString("yyyy-MM-dd");
-            DateTime Time = DateTime.Now;
-            string time = Time.ToString("H:mm:ss");
-            double count = Convert.ToDouble(numericUpDown1.Value);
+            string time = myDate.ToString("H:mm:ss");
+            int count = Convert.ToInt32(numericUpDown1.Value);
             double newbalance;
-            int loadedBalance = 0;
+            double loadedBalance = 0;
             if (boughtList.Items.Count > 0)
             {
-                try
-                {
-                    data = new DatabaseConnection();
-                    loadedBalance = Convert.ToInt32(data.loadBalance(tag));
-                }
-                catch
+
+                if (tag == null)
                 {
                     MessageBox.Show("Scan RFID first.");
                 }
+                else
+                {
                     data = new DatabaseConnection();
-                    if (data.Insert(product.ID, shopID, tag, time, dateNow, count))
+                    loadedBalance = data.loadBalance(tag);
+                    data = new DatabaseConnection();
+                    if (data.Insert(product.ID, 10, tag, time, dateNow, count))
                     {
                         data = new DatabaseConnection();
-                        if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(count), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), tag))
+                        if (data.UpdateStock(product.TotalLeft, count, product.ID) && data.Balance(loadedBalance, product.Price, tag))
                         {
                             newbalance = loadedBalance - totalCost;
                             MessageBox.Show("Bought.");
                             data = new DatabaseConnection();
                             BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
-
                         }
                     }
+                }
 
             }
             else
             {
                 MessageBox.Show("Order First.");
             }
+        }
+
+        private void orderBtn_Click(object sender, EventArgs e)
+        {
+            int count = Convert.ToInt32(numericUpDown1.Value);
+            if (numericUpDown1.Value > 0)
+            {
+                try
+                {
+                    totalCost = product.Price * count;
+
+                    bought.Add(product);
+                    product.updateStock(Convert.ToInt32(count), "minus");
+
+                    labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+                    boughtList.Items.Add(product.AsString() + ", order: " + count + ", price: " + String.Format("{0:0.00}", totalCost));
+                    totalPrice = totalPrice + totalCost;
+                    labelTotal.Text = "Total cost: " + String.Format("{0:0.00}", totalPrice);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Select an item");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Portion must not be 0");
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            boughtList.Items.Clear();
+            bought.Clear();
+
+            int count = Convert.ToInt32(numericUpDown1.Value);
+
+            product.updateStock(Convert.ToInt32(count), "add");
+            totalCost = 0;
+            labelTotal.Text = "Total cost: ";
+            labelProduct.Text = "Product: ";
+
+        }
+
+        private void btn_Search(object sender, EventArgs e)
+        {
+            product = shop.GetItems(tbSearch.Text);
+
+            if (tbSearch.Text != "")
+            {
+                if (product != null)
+                {
+                    LabelLoad(tbSearch.Text);
+                }
+                else
+                {
+                    MessageBox.Show("We don't serve this.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fill in a name.");
+            }
+
+        }
+        // RFID
+        void rfid_Tag(object sender, TagEventArgs e)
+        {
+            tag = e.Tag;
+            data = new DatabaseConnection();
+            BalanceLabel.Text = "Current Balance: " + String.Format("{0:0.00}", data.loadBalance(tag));
+        }
+
+        public void LabelLoad(string item)
+        {
+            product = shop.GetItems(item);
+            labelCost.Text = "Cost: " + String.Format("{0:0.00}", product.Price);
+            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+
+            object O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -220,113 +292,6 @@ namespace Shop_application
         private void AbsoluteVodkaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Vodka");
-        }
-
-        private void orderBtn_Click(object sender, EventArgs e)
-        {
-            int count = Convert.ToInt32(numericUpDown1.Value);
-            if (numericUpDown1.Value > 0)
-            {
-                try
-                {
-                    totalCost = product.Price * count;
-                    
-                    bought.Add(product);
-                    product.updateStock(Convert.ToInt32(count), "minus");
-
-                    labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-                    boughtList.Items.Add(product.AsString() + ", order: " + count + ", total: " + String.Format("{0:0.00}", totalCost));
-                    totalPrice = totalPrice + totalCost;
-                    labelTotal.Text = "Total cost: " + String.Format("{0:0.00}", totalPrice);
-
-                }
-                catch
-                {
-                    MessageBox.Show("Select an item");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Portion must not be 0");
-            }
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            int selected;
-            double selectedPrice;
-
-            double count = Convert.ToDouble(numericUpDown1.Value);
-
-            if (this.boughtList.SelectedIndex >= 0)
-            {
-                selected = this.boughtList.SelectedIndex;
-                selectedPrice = Convert.ToDouble(bought[selected].Price);
-
-                bought.RemoveAt(selected);
-                boughtList.Items.RemoveAt(selected);
-
-                totalPrice = totalPrice - selectedPrice * count;
-
-                product.updateStock(Convert.ToInt32(count), "add");
-
-                labelTotal.Text = "Total cost: " + totalPrice;
-                labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            }
-
-
-
-        }
-
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            product = shop.GetItems(textBox1.Text);
-
-            if (textBox1 != null)
-            {
-                if (product != null)
-                {
-                    labelCost.Text = "Cost: " + product.Price.ToString();
-                    labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-                    O = Properties.Resources.ResourceManager.GetObject(product.Image);
-                    pictureBoxBIG.Image = (Image)O;
-                    //Image = (Image)O; //Set the Imag
-                }
-                else
-                {
-                    MessageBox.Show("We don't serve this.");
-                }
-            }
-
-            else
-            {
-                MessageBox.Show("We don't serve this.");
-            }
-
-        }
-        // RFID
-        void rfid_Tag(object sender, TagEventArgs e)
-        {
-            if (!isReturn)
-            {
-                tag = e.Tag;
-                data = new DatabaseConnection();
-                balance = Convert.ToInt32(data.loadBalance(tag));
-                BalanceLabel.Text = "Current Balance: " + balance;
-            }
-        }
-
-        public void LabelLoad(string item)
-        {
-            product = shop.GetItems(item);
-            labelCost.Text = "Cost: " + String.Format("{0:0.00}", product.Price);
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
         }
     }
 }

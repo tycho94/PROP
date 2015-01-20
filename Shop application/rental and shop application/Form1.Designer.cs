@@ -46,7 +46,7 @@
             this.pictureBoxBIG = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.JackDPctBox = new System.Windows.Forms.PictureBox();
             this.burgerPctBox = new System.Windows.Forms.PictureBox();
             this.nuggetPctBox = new System.Windows.Forms.PictureBox();
@@ -130,7 +130,7 @@
             this.button3.TabIndex = 8;
             this.button3.Text = "Buy";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.btn_Buy);
             // 
             // label5
             // 
@@ -212,6 +212,11 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(70, 505);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 48;
@@ -271,7 +276,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbSearch);
             this.groupBox2.Controls.Add(this.JackDPctBox);
             this.groupBox2.Controls.Add(this.burgerPctBox);
             this.groupBox2.Controls.Add(this.nuggetPctBox);
@@ -313,14 +318,14 @@
             this.button2.TabIndex = 43;
             this.button2.Text = "Search";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.button2.Click += new System.EventHandler(this.btn_Search);
             // 
-            // textBox1
+            // tbSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(59, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 42;
+            this.tbSearch.Location = new System.Drawing.Point(59, 28);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(121, 20);
+            this.tbSearch.TabIndex = 42;
             // 
             // JackDPctBox
             // 
@@ -728,7 +733,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label BalanceLabel;
     }
 }
