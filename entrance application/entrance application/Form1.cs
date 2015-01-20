@@ -73,7 +73,6 @@ namespace entrance_application
                 data = new DatabaseConnection();
                 if (data.GetStatus(e.Tag) == 0)
                 {
-                    //db function
                     tbStatus.BackColor = Color.LightGreen;
                     tbStatus.Text = "Allowed";
                     data = new DatabaseConnection();
@@ -83,7 +82,6 @@ namespace entrance_application
                 data = new DatabaseConnection();
                 if (data.GetStatus(e.Tag) == 1)
                 {
-                    //db function
                     tbStatus.BackColor = Color.Red;
                     tbStatus.Text = "Entered";
                     data = new DatabaseConnection();
