@@ -21,6 +21,7 @@ namespace Rental_App
         Item product;
         Items listOfItems = new Items("listOfItems");
         DatabaseConnection data = new DatabaseConnection();
+        double loadedBalance;
 
         public Return()
         {
@@ -31,8 +32,8 @@ namespace Rental_App
             reader = new RFID();
             reader.Attach += new AttachEventHandler(rfid_Attach);
             reader.Detach += new DetachEventHandler(rfid_Detach);
-            reader.Tag += new TagEventHandler(rfid_Tag);
-            reader.TagLost += new TagEventHandler(rfid_TagLost);
+            reader.RFIDTag += new TagEventHandler(rfid_Tag);
+            reader.RFIDTagLost += new TagEventHandler(rfid_TagLost);
             reader.Antenna = true;
             reader.open();
 
@@ -47,18 +48,21 @@ namespace Rental_App
         {
             int selected;
 
+             
+            
+             loadedBalance= Convert.ToDouble(data.loadBalance(RFID));
             if (this.lbItems.SelectedIndex >= 0)
             {
                 selected = this.lbItems.SelectedIndex;
 
                 string s = lbItems.Items[selected].ToString();
                 //product = listOfItems.GetItems(selected);
-
+                
                 product = listOfItems.GetItems(s);
 
                 lbItems.Items.RemoveAt(selected);
 
-                if (data.Stocks(product.TotalLeft, 1, product.iD) && data.deleteRent(product.iD, RFID))
+                if (data.retDeposit(loadedBalance, product.Deposit, RFID) && data.deleteRent(product.iD, RFID) )
                 {
                     MessageBox.Show("Returned!");
                 }
@@ -116,7 +120,8 @@ namespace Rental_App
             //MessageBox.Show("Close");
             this.Hide();
             Form1 MainForm = new Form1();
-            MainForm.ShowDialog();
+            MainForm.Show(this);
+            MainForm.Close();
             
         }
 

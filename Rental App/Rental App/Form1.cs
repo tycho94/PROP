@@ -39,9 +39,9 @@ namespace Rental_App
             InitializeComponent();
 
             reader = new RFID();
-            reader.Tag += new TagEventHandler(rfid_Tag);
+            reader.RFIDTag += new TagEventHandler(rfid_Tag);
             reader.open();
-            reader.waitForAttachment(3000);
+           // reader.waitForAttachment(3000);
             reader.Antenna = true;
             reader.LED = true;
 
@@ -146,14 +146,14 @@ namespace Rental_App
 
             quantity = Convert.ToDouble(numericUpDown1.Value);
 
-            if (RFID != "")
+            if (RFID != null)
             {
                 if (balance > product.Price * quantity)
                 {
 
                     int loadedBalance = Convert.ToInt32(data.loadBalance(RFID));
 
-                    if (data.insert(product.iD, shopID, RFID, dateNow, dateReturn, Convert.ToInt32(product.Deposit)))
+                    if (data.insert(product.iD, quantity, shopID, RFID, dateNow, dateReturn, Convert.ToInt32(product.Deposit)))
                     {
                         if (data.Stocks(product.TotalLeft + Convert.ToInt32(quantity), Convert.ToInt32(quantity), product.iD))
                         {
@@ -190,7 +190,10 @@ namespace Rental_App
         {
             isReturn = true;
             Return form2 = new Return();
-            form2.ShowDialog();
+            
+            form2.ShowDialog(this);
+            form2.Close();
+           
         }
 
         public void LabelLoad(string item)
@@ -216,7 +219,7 @@ namespace Rental_App
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
         private void pictureBox30_Click(object sender, EventArgs e)
         {

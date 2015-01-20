@@ -123,10 +123,10 @@ namespace Rental_App
         //    }
         //}
 
-        public Boolean insert(int RID, int SID, string RFID, string DateRent, string DateReturn, int deposit)
+        public Boolean insert(int RID,double Quantity, int SID, string RFID, string DateRent, string DateReturn, int deposit)
         {
 
-            string insertRented = "INSERT INTO `dbi289514`.`renteditem` (`Rental_ID`, `ShopID`, `RFID`, `Date_Rented`, `Return_Date`, `Deposit`)   VALUES ('" + RID + "', '" + SID + "', '" + RFID + "', '" + DateRent + "', '" + DateReturn + "', '" + deposit + "')";
+            string insertRented = "INSERT INTO `dbi289514`.`renteditem` (`Rental_ID`,`Quantity`, `ShopID`, `RFID`, `Date_Rented`, `Return_Date`, `Deposit`)   VALUES ('" + RID + "', '" + Quantity + "' ,'" + SID + "', '" + RFID + "', '" + DateRent + "', '" + DateReturn + "', '" + deposit + "')";
 
             try
             {
@@ -139,6 +139,17 @@ namespace Rental_App
             {
                 return false;
             }
+        }
+
+        public Boolean returned(int stock, int quantity, int RID) 
+        {
+            cmd = new MySqlCommand(updateStock, con);
+            cmd.Parameters.AddWithValue("@STOCK", stock + quantity);
+            cmd.Parameters.AddWithValue("@IDR", RID);
+            cmd.ExecuteNonQuery();
+            return true;
+
+ 
         }
 
         public Boolean Stocks(int stock, int quantity, int RId)
@@ -159,6 +170,15 @@ namespace Rental_App
             cmd.ExecuteNonQuery();
             return true;
 
+        }
+
+        public Boolean retDeposit(double balance, double deposit, string id) 
+        {
+            cmd = new MySqlCommand(updateBalance,con);
+            cmd.Parameters.AddWithValue("@BALANCE", balance + deposit);
+            cmd.Parameters.AddWithValue("@IDO", id);
+            cmd.ExecuteNonQuery();
+            return true;
         }
 
         public bool deleteRent(int RID, string rfid)
