@@ -7,3 +7,6 @@
 \\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.csproj.GenerateResource.Cache
 \\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.exe
 \\vmware-host\shared folders\documents\visual studio 2013\Projects\rental and shop application\rental and shop application\obj\Debug\rental and shop application.pdb
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\rental and shop application\rental and shop application\bin\Debug\rental and shop application.exe.config
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\rental and shop application\rental and shop application\obj\Debug\rental and shop application.exe
+\\vmware-host\Shared Folders\Desktop\ProP\PROP\rental and shop application\rental and shop application\obj\Debug\rental and shop application.pdb
