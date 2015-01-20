@@ -32,6 +32,12 @@ namespace Campsite_application
 
         private string checkspot = "SELECT RESERVEE FROM CAMPSPOT WHERE SPOTID = @SPOTID";
 
+        private string setspot = "UPDATE VISITOR SET CAMPSPOT = @SPOTID WHERE RFID =@RFID";
+
+        private string getspot = "SELECT SPOTID FROM CAMPSPOT WHERE RESERVEE = @RFID";
+
+        private string maxspots = "SELECT COUNT(CAMPSPOT) FROM VISITOR WHERE CAMPSPOT = @SPOTID";
+
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader rdr;
@@ -88,7 +94,45 @@ namespace Campsite_application
             }
         }
 
+        public Boolean SetSite(string ftag, string stag)
+        {
+            try
+            {
+                int a = -1;
+                cmd = new MySqlCommand(getspot, con);
+                cmd.Parameters.AddWithValue("@RFID", ftag);
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    a = rdr.GetInt32(0);
+                }
+                rdr.Close();
+                int b = 0;
+                cmd = new MySqlCommand(maxspots, con);
+                cmd.Parameters.AddWithValue("@SPOTID", a);
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    b = rdr.GetInt32(0);
+                }
+                rdr.Close();
 
+                if (a != -1 && b > 0)
+                {
+                    cmd = new MySqlCommand(setspot, con);
+                    cmd.Parameters.AddWithValue("@SPOTID", a);
+                    cmd.Parameters.AddWithValue("@RFID", stag);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
         public List<Int32> ListSites()
@@ -168,6 +212,8 @@ namespace Campsite_application
             }
 
         }
+
+
 
         public void Disconnect()
         {

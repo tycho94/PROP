@@ -45,18 +45,40 @@
             this.lblName = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.lbl3 = new System.Windows.Forms.Label();
+            this.lbl4 = new System.Windows.Forms.Label();
+            this.lbl5 = new System.Windows.Forms.Label();
+            this.lbl6 = new System.Windows.Forms.Label();
+            this.lbl7 = new System.Windows.Forms.Label();
+            this.lbl8 = new System.Windows.Forms.Label();
+            this.lbl9 = new System.Windows.Forms.Label();
+            this.lbl10 = new System.Windows.Forms.Label();
+            this.panelcampspot = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblFirst = new System.Windows.Forms.Label();
+            this.lblSecond = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnContinue = new System.Windows.Forms.Button();
+            this.btnAddDelete = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.Campsite)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panelcampspot.SuspendLayout();
             this.SuspendLayout();
             // 
             // Campsite
             // 
             this.Campsite.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.Campsite.Image = ((System.Drawing.Image)(resources.GetObject("Campsite.Image")));
-            this.Campsite.Location = new System.Drawing.Point(252, -3);
+            this.Campsite.Location = new System.Drawing.Point(433, -3);
             this.Campsite.Name = "Campsite";
             this.Campsite.Size = new System.Drawing.Size(656, 557);
             this.Campsite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -139,7 +161,7 @@
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.Controls.Add(this.lbFreeSites);
             this.panel1.Controls.Add(this.lblCost);
-            this.panel1.Location = new System.Drawing.Point(12, 108);
+            this.panel1.Location = new System.Drawing.Point(206, 13);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(188, 326);
             this.panel1.TabIndex = 36;
@@ -151,9 +173,9 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.reserveBtn);
-            this.panel2.Location = new System.Drawing.Point(12, 440);
+            this.panel2.Location = new System.Drawing.Point(13, 111);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(188, 98);
+            this.panel2.Size = new System.Drawing.Size(187, 144);
             this.panel2.TabIndex = 37;
             // 
             // panel3
@@ -198,10 +220,11 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.Status,
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 558);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(903, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1093, 22);
             this.statusStrip1.TabIndex = 39;
             this.statusStrip1.Text = "Status";
             // 
@@ -210,11 +233,254 @@
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(0, 17);
             // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.BackColor = System.Drawing.Color.Red;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(672, 256);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(16, 18);
+            this.lbl1.TabIndex = 36;
+            this.lbl1.Text = "1";
+            this.lbl1.Visible = false;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.BackColor = System.Drawing.Color.Red;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.Location = new System.Drawing.Point(672, 237);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(16, 18);
+            this.lbl2.TabIndex = 40;
+            this.lbl2.Text = "2";
+            this.lbl2.Visible = false;
+            // 
+            // lbl3
+            // 
+            this.lbl3.AutoSize = true;
+            this.lbl3.BackColor = System.Drawing.Color.Red;
+            this.lbl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl3.Location = new System.Drawing.Point(672, 217);
+            this.lbl3.Name = "lbl3";
+            this.lbl3.Size = new System.Drawing.Size(16, 18);
+            this.lbl3.TabIndex = 41;
+            this.lbl3.Text = "3";
+            this.lbl3.Visible = false;
+            // 
+            // lbl4
+            // 
+            this.lbl4.AutoSize = true;
+            this.lbl4.BackColor = System.Drawing.Color.Red;
+            this.lbl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl4.Location = new System.Drawing.Point(672, 192);
+            this.lbl4.Name = "lbl4";
+            this.lbl4.Size = new System.Drawing.Size(16, 18);
+            this.lbl4.TabIndex = 42;
+            this.lbl4.Text = "4";
+            this.lbl4.Visible = false;
+            // 
+            // lbl5
+            // 
+            this.lbl5.AutoSize = true;
+            this.lbl5.BackColor = System.Drawing.Color.Red;
+            this.lbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl5.Location = new System.Drawing.Point(684, 192);
+            this.lbl5.Name = "lbl5";
+            this.lbl5.Size = new System.Drawing.Size(16, 18);
+            this.lbl5.TabIndex = 43;
+            this.lbl5.Text = "5";
+            this.lbl5.Visible = false;
+            // 
+            // lbl6
+            // 
+            this.lbl6.AutoSize = true;
+            this.lbl6.BackColor = System.Drawing.Color.Red;
+            this.lbl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl6.Location = new System.Drawing.Point(706, 192);
+            this.lbl6.Name = "lbl6";
+            this.lbl6.Size = new System.Drawing.Size(16, 18);
+            this.lbl6.TabIndex = 44;
+            this.lbl6.Text = "6";
+            this.lbl6.Visible = false;
+            // 
+            // lbl7
+            // 
+            this.lbl7.AutoSize = true;
+            this.lbl7.BackColor = System.Drawing.Color.Red;
+            this.lbl7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl7.Location = new System.Drawing.Point(728, 192);
+            this.lbl7.Name = "lbl7";
+            this.lbl7.Size = new System.Drawing.Size(16, 18);
+            this.lbl7.TabIndex = 45;
+            this.lbl7.Text = "7";
+            this.lbl7.Visible = false;
+            // 
+            // lbl8
+            // 
+            this.lbl8.AutoSize = true;
+            this.lbl8.BackColor = System.Drawing.Color.Red;
+            this.lbl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl8.Location = new System.Drawing.Point(761, 192);
+            this.lbl8.Name = "lbl8";
+            this.lbl8.Size = new System.Drawing.Size(16, 18);
+            this.lbl8.TabIndex = 46;
+            this.lbl8.Text = "8";
+            this.lbl8.Visible = false;
+            // 
+            // lbl9
+            // 
+            this.lbl9.AutoSize = true;
+            this.lbl9.BackColor = System.Drawing.Color.Red;
+            this.lbl9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl9.Location = new System.Drawing.Point(806, 192);
+            this.lbl9.Name = "lbl9";
+            this.lbl9.Size = new System.Drawing.Size(16, 18);
+            this.lbl9.TabIndex = 47;
+            this.lbl9.Text = "9";
+            this.lbl9.Visible = false;
+            // 
+            // lbl10
+            // 
+            this.lbl10.AutoSize = true;
+            this.lbl10.BackColor = System.Drawing.Color.Red;
+            this.lbl10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl10.Location = new System.Drawing.Point(798, 210);
+            this.lbl10.Name = "lbl10";
+            this.lbl10.Size = new System.Drawing.Size(24, 18);
+            this.lbl10.TabIndex = 48;
+            this.lbl10.Text = "10";
+            this.lbl10.Visible = false;
+            // 
+            // panelcampspot
+            // 
+            this.panelcampspot.BackColor = System.Drawing.Color.LightCoral;
+            this.panelcampspot.Controls.Add(this.btnAddDelete);
+            this.panelcampspot.Controls.Add(this.btnContinue);
+            this.panelcampspot.Controls.Add(this.label9);
+            this.panelcampspot.Controls.Add(this.label8);
+            this.panelcampspot.Controls.Add(this.label7);
+            this.panelcampspot.Controls.Add(this.label5);
+            this.panelcampspot.Controls.Add(this.lblSecond);
+            this.panelcampspot.Controls.Add(this.lblFirst);
+            this.panelcampspot.Controls.Add(this.label4);
+            this.panelcampspot.Location = new System.Drawing.Point(12, 344);
+            this.panelcampspot.Name = "panelcampspot";
+            this.panelcampspot.Size = new System.Drawing.Size(382, 210);
+            this.panelcampspot.TabIndex = 37;
+            this.panelcampspot.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(9, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(348, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Add/remove someone to your campspot";
+            // 
+            // lblFirst
+            // 
+            this.lblFirst.AutoSize = true;
+            this.lblFirst.Location = new System.Drawing.Point(10, 135);
+            this.lblFirst.Name = "lblFirst";
+            this.lblFirst.Size = new System.Drawing.Size(41, 13);
+            this.lblFirst.TabIndex = 34;
+            this.lblFirst.Text = "Name: ";
+            // 
+            // lblSecond
+            // 
+            this.lblSecond.AutoSize = true;
+            this.lblSecond.Location = new System.Drawing.Point(235, 135);
+            this.lblSecond.Name = "lblSecond";
+            this.lblSecond.Size = new System.Drawing.Size(41, 13);
+            this.lblSecond.TabIndex = 35;
+            this.lblSecond.Text = "Name: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(32, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(129, 13);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "1. Scan camper RFID";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(32, 68);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(107, 13);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "2. Press Continue";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(32, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(165, 13);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "3. Scan acquaintance RFID";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(32, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 13);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "4. Press Add";
+            // 
+            // btnContinue
+            // 
+            this.btnContinue.Location = new System.Drawing.Point(5, 174);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(75, 23);
+            this.btnContinue.TabIndex = 40;
+            this.btnContinue.Text = "Continue";
+            this.btnContinue.UseVisualStyleBackColor = true;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
+            // 
+            // btnAddDelete
+            // 
+            this.btnAddDelete.Location = new System.Drawing.Point(238, 174);
+            this.btnAddDelete.Name = "btnAddDelete";
+            this.btnAddDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnAddDelete.TabIndex = 41;
+            this.btnAddDelete.Text = "Add (max 3)";
+            this.btnAddDelete.UseVisualStyleBackColor = true;
+            this.btnAddDelete.Visible = false;
+            this.btnAddDelete.Click += new System.EventHandler(this.btnAddDelete_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 550);
+            this.ClientSize = new System.Drawing.Size(1093, 580);
+            this.Controls.Add(this.panelcampspot);
+            this.Controls.Add(this.lbl10);
+            this.Controls.Add(this.lbl9);
+            this.Controls.Add(this.lbl8);
+            this.Controls.Add(this.lbl7);
+            this.Controls.Add(this.lbl6);
+            this.Controls.Add(this.lbl5);
+            this.Controls.Add(this.lbl4);
+            this.Controls.Add(this.lbl3);
+            this.Controls.Add(this.lbl2);
+            this.Controls.Add(this.lbl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -231,6 +497,8 @@
             this.panel3.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panelcampspot.ResumeLayout(false);
+            this.panelcampspot.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +522,27 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel Status;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.Label lbl4;
+        private System.Windows.Forms.Label lbl5;
+        private System.Windows.Forms.Label lbl6;
+        private System.Windows.Forms.Label lbl7;
+        private System.Windows.Forms.Label lbl8;
+        private System.Windows.Forms.Label lbl9;
+        private System.Windows.Forms.Label lbl10;
+        private System.Windows.Forms.Panel panelcampspot;
+        private System.Windows.Forms.Button btnAddDelete;
+        private System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSecond;
+        private System.Windows.Forms.Label lblFirst;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
     }
 }
 

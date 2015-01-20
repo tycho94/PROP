@@ -18,6 +18,9 @@ namespace Campsite_application
         DatabaseConnection data = new DatabaseConnection();
         string tag;
         int spot;
+        string ftag;
+        string stag;
+        bool a = false;
         public Form1()
         {
             InitializeComponent();
@@ -46,16 +49,16 @@ namespace Campsite_application
             spot = Convert.ToInt32(lbFreeSites.SelectedItem);
             if (data.Reserve(tag, spot))
             {
-               Status.Text = "Succesfull reservation";
-               lblSite.Text = "Site number: " + spot.ToString();
+                lblStatus.Text = "Succesfull reservation";
+                lblSite.Text = "Site number: " + spot.ToString();
             }
             else
             {
-                Status.Text = "Something went wrong";
-            }            
+                lblStatus.Text = "Something went wrong";
+            }
         }
 
-        
+
 
         private void Scan(object sender, TagEventArgs e)
         {
@@ -64,16 +67,87 @@ namespace Campsite_application
             lblMoney.Text = "Money: " + data.GetMoney(e.Tag).ToString();
             lblSite.Visible = true;
             if (data.GetSite(e.Tag) != -1)
+            {
                 lblSite.Text = "Site number: " + data.GetSite(e.Tag).ToString();
+                lblFirst.Text = "Name: " + data.GetName(e.Tag).ToString();
+                panelcampspot.Visible = true;
+            }
             else
+            {
                 lblSite.Visible = false;
+                if (a == true)
+                {
+                    lblSecond.Text = "Name: " + data.GetName(e.Tag).ToString();
+                }
+                else
+                    panelcampspot.Visible = false;
+            }
+
         }
 
         private void lbFreeSites_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblCost.Text = "Cost per night: " + Convert.ToString(data.GetPrice(Convert.ToInt32(lbFreeSites.SelectedItem)));
+            campsitenr(Convert.ToInt32(lbFreeSites.SelectedItem));
         }
 
 
+
+        private void campsitenr(int nr)
+        {
+            lbl1.Visible = false;
+            lbl2.Visible = false;
+            lbl3.Visible = false;
+            lbl4.Visible = false;
+            lbl5.Visible = false;
+            lbl6.Visible = false;
+            lbl7.Visible = false;
+            lbl8.Visible = false;
+            lbl9.Visible = false;
+            lbl10.Visible = false;
+            lbl1.Visible = false;
+            if (nr == 1)
+                lbl1.Visible = true;
+            if (nr == 2)
+                lbl2.Visible = true;
+            if (nr == 3)
+                lbl3.Visible = true;
+            if (nr == 4)
+                lbl4.Visible = true;
+            if (nr == 5)
+                lbl5.Visible = true;
+            if (nr == 6)
+                lbl6.Visible = true;
+            if (nr == 7)
+                lbl7.Visible = true;
+            if (nr == 8)
+                lbl8.Visible = true;
+            if (nr == 9)
+                lbl9.Visible = true;
+            if (nr == 10)
+                lbl10.Visible = true;
+        }
+
+        private void btnContinue_Click(object sender, EventArgs e)
+        {
+            a = true;
+            ftag = tag;
+            btnContinue.Visible = false;
+            btnAddDelete.Visible = true;
+        }
+
+        private void btnAddDelete_Click(object sender, EventArgs e)
+        {
+            a = false;
+            stag = tag;
+            btnContinue.Visible = true;
+            btnAddDelete.Visible = false;
+            if (data.SetSite(ftag, stag))
+                lblStatus.Text = "Succesfully added to campspot";
+            else
+                lblStatus.Text = "Something went wrong";
+            lblFirst.Text = "Name: ";
+            lblSecond.Text = "Name: ";
+        }
     }
 }
