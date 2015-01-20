@@ -121,7 +121,6 @@
             this.labelTotal.Size = new System.Drawing.Size(106, 24);
             this.labelTotal.TabIndex = 5;
             this.labelTotal.Text = "Total cost:";
-            this.labelTotal.Click += new System.EventHandler(this.label3_Click);
             // 
             // button3
             // 
@@ -185,7 +184,7 @@
             this.label6.AutoSize = true;
             this.label6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(121, 424);
+            this.label6.Location = new System.Drawing.Point(137, 424);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(25, 25);
             this.label6.TabIndex = 46;

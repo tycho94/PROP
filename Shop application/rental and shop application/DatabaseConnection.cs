@@ -55,6 +55,7 @@ namespace Shop_application
             }
 
             rdr.Close();
+            con.Close();
             return blnc;
 
 
@@ -79,6 +80,7 @@ namespace Shop_application
             }
 
             rdr.Close();
+            con.Close();
             return list;
         }
 
@@ -93,10 +95,12 @@ namespace Shop_application
                 cmd.Parameters.AddWithValue("@IDO", Vid);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
             }
             catch
             {
+                con.Close();
                 return false;
             }
         }
@@ -112,7 +116,6 @@ namespace Shop_application
                 //cmd.Parameters.AddWithValue("@QUANTITY", quantity);
                 //cmd.Parameters.AddWithValue("@IID", Iid);
                 cmd.ExecuteNonQuery();
-
                 return true;
             }
             catch
@@ -128,17 +131,14 @@ namespace Shop_application
             {
                 cmd = new MySqlCommand(insert, con);
                 cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
             }
             catch 
             {
+                con.Close();
                 return false;
             }
-        }
-
-        public void Disconnect()
-        {
-            con.Close();
         }
     }
 }

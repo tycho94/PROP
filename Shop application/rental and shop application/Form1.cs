@@ -14,9 +14,9 @@ namespace Shop_application
 {
     public partial class Shop : Form
     {
-        
 
-       // double cost = 0;
+
+        // double cost = 0;
         //int productLeft = 0;
         double totalCost = 0;
         private Items shop;
@@ -26,13 +26,13 @@ namespace Shop_application
         int shopID = 10;
         bool isReturn = false;
         double balance;
-        
+
         RFID Reader;
 
         List<Item> bought = new List<Item>();
         Item product;
 
-        DatabaseConnection data = new DatabaseConnection();
+        DatabaseConnection data;
 
 
         public Shop()
@@ -47,14 +47,11 @@ namespace Shop_application
             Reader.LED = true;
 
             shop = new Items("shop");
-    
-            CreateDummyData();
 
-            
-            
+            CreateDummyData();
         }
 
-        public void CreateDummyData() 
+        public void CreateDummyData()
         {
             //shop.AddSnack("Hamburger", 2.70, 200);
             //shop.AddSnack("Nugget", 1.50, 100);
@@ -80,27 +77,13 @@ namespace Shop_application
             //shop.AddSnack("Jaeger", 15, 70, "Jagermeister_Bottle");
             //shop.AddSnack("Jack Daniels", 20, 50, "Jack D");
             //shop.AddSnack("Vodka", 17, 60, "Vodka");
-
+            data = new DatabaseConnection();
             foreach (Item i in data.LoadItemInfo())
             {
-                shop.AddSnack(i.Name, i.Price, i.TotalLeft, i.ID,i.Image);
+                shop.AddSnack(i.Name, i.Price, i.TotalLeft, i.ID, i.Image);
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-         //  this.cost= 3.5;
-           //labelCost.Text = "Cost: "+this.cost.ToString();
-           //this.productLeft= 200;
-           product = shop.GetItems("Hamburger");
-
-           labelCost.Text = "Cost: " + product.Price.ToString();
-           labelProduct.Text ="Product: "+product.TotalLeft.ToString();
-           //MessageBox.Show(i.AsString());
-           O = Properties.Resources.ResourceManager.GetObject(product.Image);
-           pictureBoxBIG.Image = (Image)O; 
-        }
-        
         private void button3_Click(object sender, EventArgs e)
         {
             DateTime myDate = DateTime.Now;
@@ -110,221 +93,187 @@ namespace Shop_application
             double banyak = Convert.ToDouble(numericUpDown1.Value);
             double harga;
             int loadedBalance = 0;
-            if (boughtList.Items.Count>0)
+            if (boughtList.Items.Count > 0)
             {
-                 loadedBalance = Convert.ToInt32(data.loadBalance(tag));
+                data = new DatabaseConnection();
+                loadedBalance = Convert.ToInt32(data.loadBalance(tag));
+                data = new DatabaseConnection();
                 if (data.Insert(product.ID, shopID, tag, time, dateNow, banyak))
                 {
+                    data = new DatabaseConnection();
                     if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(banyak), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), tag))
                     {
                         harga = loadedBalance - totalCost;
                         MessageBox.Show("Kebeli");
-
+                        data = new DatabaseConnection();
                         BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
 
                     }
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Order First.");
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-        private void button5_Click(object sender, EventArgs e)
-        {
-           
+            LabelLoad("Hamburger");
         }
 
         private void nuggetPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 1.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Nugget");
-
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Nugget");
         }
 
         private void CorndogPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 1;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Corn Dog");
-
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Corn Dog");
         }
 
         private void HotdogPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 2.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Hotdog");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Hotdog");
         }
 
         private void pizzaPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 6;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Pizza");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Pizza");
         }
 
         private void FriesPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 1.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString()  ;
-            //this.productLeft = 200;
-            product = shop.GetItems("French Fries");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("French Fries");
         }
 
         private void DurumPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 3;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Durum");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Durum");
         }
 
         private void TacoPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 3;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Taco");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Taco");
         }
 
         private void LoempiaPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 2.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Lumpia");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
+            LabelLoad("Lumpia");
         }
 
         private void NachosPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 1.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Nachos");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-            
+            LabelLoad("Nachos");
         }
 
         private void ChickenPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 2.5;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Kip Stukken");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-            
+            LabelLoad("Kip Stukken");
         }
 
         private void KibbelingPctBox_Click(object sender, EventArgs e)
         {
-            //this.cost = 3;
-            //labelCost.Text = "Cost: " + this.cost.ToString() ;
-            //this.productLeft = 200;
-            product = shop.GetItems("Kibbeling");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+            LabelLoad("Kibbeling");
+        }
 
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-            
+
+        private void ColaPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Coca Cola");
+        }
+
+        private void FantaPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Fanta");
+        }
+
+        private void SpritePctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Sprite");
+        }
+
+        private void ColaZeroPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Cola-Zero");
+        }
+
+        private void PepsiPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Pepsi");
+        }
+
+        private void MtnDewPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Mountain Dew");
+        }
+
+        private void BavariaPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Bavaria");
+        }
+
+        private void MonsterPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Monster");
+        }
+
+        private void SpaBlauwPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Spa Water");
+        }
+
+        private void JaegerMeisterPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Jaeger");
+        }
+
+        private void JackDPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Jack Daniels");
+        }
+
+        private void AbsoluteVodkaPctBox_Click(object sender, EventArgs e)
+        {
+            LabelLoad("Vodka");
         }
 
         private void orderBtn_Click(object sender, EventArgs e)
         {
-            double banyak = Convert.ToDouble(numericUpDown1.Value);
+            int banyak = Convert.ToInt32(numericUpDown1.Value);
             if (numericUpDown1.Value > 0)
             {
+                try
+                {
+                    totalCost = product.Price * banyak;
 
-                totalCost = product.Price * banyak;
+                    bought.Add(product);
+                    product.updateStock(Convert.ToInt32(banyak), "kurang");
 
-                bought.Add(product);
-                product.updateStock(Convert.ToInt32(banyak), "kurang");
-
-                //foreach (Item x in bought)
-                //{
-                //    string nama;
-                //    int jumlah;
-                //    int totalHarga;
-
-
-                labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-                boughtList.Items.Add(product.AsString() + ", order: " + banyak + ", total: " + totalCost);
-                totalPrice = totalPrice + totalCost;
-                //}
+                    //foreach (Item x in bought)
+                    //{
+                    //    string nama;
+                    //    int jumlah;
+                    //    int totalHarga;
 
 
+                    labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+                    boughtList.Items.Add(product.AsString() + ", order: " + banyak + ", total: " + totalCost);
+                    totalPrice = totalPrice + totalCost;
+                    //}
 
-                labelTotal.Text = "Total cost: " + totalPrice;
-                //boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
-                //    boughtList.Items.Add("Product: " + pName + ", Harga:");
+
+
+                    labelTotal.Text = "Total cost: " + totalPrice;
+                    //boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
+                    //    boughtList.Items.Add("Product: " + pName + ", Harga:");
+                }
+                catch
+                {
+                    MessageBox.Show("Select an item");
+                }
             }
-            else 
+            else
             {
                 MessageBox.Show("Portion must not be 0");
             }
@@ -334,19 +283,19 @@ namespace Shop_application
         {
             int selected;
             double selectedPrice;
-            
+
             double banyak = Convert.ToDouble(numericUpDown1.Value);
 
             if (this.boughtList.SelectedIndex >= 0)
             {
                 selected = this.boughtList.SelectedIndex;
                 selectedPrice = Convert.ToDouble(bought[selected].Price);
-                
+
                 bought.RemoveAt(selected);
                 boughtList.Items.RemoveAt(selected);
 
-                totalPrice = totalPrice - selectedPrice*banyak;
-               
+                totalPrice = totalPrice - selectedPrice * banyak;
+
                 product.updateStock(Convert.ToInt32(banyak), "tambah");
 
                 labelTotal.Text = "Total cost: " + totalPrice;
@@ -354,151 +303,32 @@ namespace Shop_application
 
             }
 
-            
+
 
         }
 
-        private void ColaPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Coca Cola");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void FantaPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Fanta");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void SpritePctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Sprite");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void ColaZeroPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Cola-Zero");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void PepsiPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Pepsi");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void MtnDewPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Mountain Dew");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void BavariaPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Bavaria");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void MonsterPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Monster");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image); 
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void SpaBlauwPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Spa Water");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void JaegerMeisterPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Jaeger");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void JackDPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Jack Daniels");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
-
-        private void AbsoluteVodkaPctBox_Click(object sender, EventArgs e)
-        {
-            product = shop.GetItems("Vodka");
-            labelCost.Text = "Cost: " + product.Price.ToString();
-            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-
-            O = Properties.Resources.ResourceManager.GetObject(product.Image);
-            pictureBoxBIG.Image = (Image)O;
-        }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             product = shop.GetItems(textBox1.Text);
 
-            if (textBox1 != null )
+            if (textBox1 != null)
             {
                 if (product != null)
                 {
                     labelCost.Text = "Cost: " + product.Price.ToString();
                     labelProduct.Text = "Product: " + product.TotalLeft.ToString();
 
-                    O = Properties.Resources.ResourceManager.GetObject(product.Image); 
+                    O = Properties.Resources.ResourceManager.GetObject(product.Image);
                     pictureBoxBIG.Image = (Image)O;
                     //Image = (Image)O; //Set the Imag
                 }
-                else 
+                else
                 {
                     MessageBox.Show("inputu.");
                 }
             }
-            
+
             else
             {
                 MessageBox.Show("we are deeply sorry, we don't have that menu.");
@@ -511,9 +341,20 @@ namespace Shop_application
             if (!isReturn)
             {
                 tag = e.Tag;
+                data = new DatabaseConnection();
                 balance = Convert.ToInt32(data.loadBalance(tag));
                 BalanceLabel.Text = "Current Balance: " + balance;
             }
+        }
+
+        public void LabelLoad(string item)
+        {
+            product = shop.GetItems(item);
+            labelCost.Text = "Cost: " + String.Format("{0:0.00}", product.Price);
+            labelProduct.Text = "Product: " + product.TotalLeft.ToString();
+
+            O = Properties.Resources.ResourceManager.GetObject(product.Image);
+            pictureBoxBIG.Image = (Image)O;
         }
     }
 }
