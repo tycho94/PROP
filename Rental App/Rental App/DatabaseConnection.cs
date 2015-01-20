@@ -38,9 +38,9 @@ namespace Rental_App
             con.Open();
         }
 
-          public string loadBalance(string id)
+          public int loadBalance(string id)
           {
-              string blnc = "";
+              int balance = -1;
 
               cmd = new MySqlCommand(getBalance, con);
               cmd.Parameters.AddWithValue("@IDO", id);
@@ -49,12 +49,11 @@ namespace Rental_App
 
               while (rdr.Read())
               {
-                  var blc = rdr["BALANCE"];
-                  blnc = blc.ToString();
+                  balance = rdr.GetInt32(0);
               }
 
               rdr.Close();
-              return blnc;
+              return balance;
 
           }
 
@@ -174,11 +173,11 @@ namespace Rental_App
               {
                   if (operation == "-")
                   {
-                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE - @PRICE WHERE RFID = @IDO";
+                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
                   }
                   else
                   {
-                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE + @PRICE WHERE RFID = @IDO";
+                      updateBalance = "UPDATE VISITOR SET BALANCE = @BALANCE WHERE RFID = @IDO";
                   }
 
                   cmd = new MySqlCommand(updateBalance, con);
@@ -213,11 +212,5 @@ namespace Rental_App
                 return false;
             }
         }
-
-          public void Disconnect()
-          {
-              con.Close();
-          }
     }
-
 }

@@ -39,3 +39,10 @@ D:\Project\Temp\Rental App\Rental App\obj\Debug\Rental_App.Return.resources
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental App.csproj.GenerateResource.Cache
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\bin\Debug\Rental App.exe
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\bin\Debug\Rental App.pdb
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental App.csprojResolveAssemblyReference.cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental_App.Form1.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental_App.Properties.Resources.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental_App.Return.resources
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\obj\Debug\Rental App.csproj.GenerateResource.Cache
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\bin\Debug\Rental App.exe
+C:\Users\Tycho\Documents\School\Fontys\ProP\PROP\Rental App\Rental App\bin\Debug\Rental App.pdb

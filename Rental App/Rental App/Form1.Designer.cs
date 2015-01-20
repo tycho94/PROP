@@ -44,13 +44,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.labelProduct = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.orderBtn = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBoxBIG = new System.Windows.Forms.PictureBox();
             this.pictureBoxIpad = new System.Windows.Forms.PictureBox();
             this.pictureBoxGoPro = new System.Windows.Forms.PictureBox();
             this.IPhoneChargerPctBox = new System.Windows.Forms.PictureBox();
@@ -60,12 +53,15 @@
             this.FlashlightpctBox = new System.Windows.Forms.PictureBox();
             this.TentPctBox = new System.Windows.Forms.PictureBox();
             this.SleepingBagsPctBox = new System.Windows.Forms.PictureBox();
+            this.orderBtn = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxBIG = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BalanceLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBIG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIpad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoPro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IPhoneChargerPctBox)).BeginInit();
@@ -75,6 +71,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.FlashlightpctBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TentPctBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SleepingBagsPctBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBIG)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
@@ -122,7 +122,6 @@
             this.labelTotal.Size = new System.Drawing.Size(106, 24);
             this.labelTotal.TabIndex = 19;
             this.labelTotal.Text = "Total cost:";
-            this.labelTotal.Click += new System.EventHandler(this.label3_Click);
             // 
             // RentList
             // 
@@ -131,7 +130,6 @@
             this.RentList.Name = "RentList";
             this.RentList.Size = new System.Drawing.Size(343, 303);
             this.RentList.TabIndex = 17;
-            this.RentList.SelectedIndexChanged += new System.EventHandler(this.RentList_SelectedIndexChanged);
             // 
             // buttonReturn
             // 
@@ -242,92 +240,7 @@
             this.groupBox1.Size = new System.Drawing.Size(236, 513);
             this.groupBox1.TabIndex = 82;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // orderBtn
-            // 
-            this.orderBtn.Location = new System.Drawing.Point(92, 481);
-            this.orderBtn.Name = "orderBtn";
-            this.orderBtn.Size = new System.Drawing.Size(75, 23);
-            this.orderBtn.TabIndex = 85;
-            this.orderBtn.Text = "order";
-            this.orderBtn.UseVisualStyleBackColor = true;
-            this.orderBtn.Click += new System.EventHandler(this.orderBtn_Click);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(64, 449);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 84;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 449);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 83;
-            this.label1.Text = "Quantity:";
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(167, 466);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 86;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.pictureBoxBIG);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.orderBtn);
-            this.groupBox2.Controls.Add(this.labelCost);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.labelDeposit);
-            this.groupBox2.Controls.Add(this.labelProduct);
-            this.groupBox2.Controls.Add(this.labelID);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(272, 13);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(296, 513);
-            this.groupBox2.TabIndex = 87;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.BalanceLabel);
-            this.groupBox3.Controls.Add(this.RentList);
-            this.groupBox3.Controls.Add(this.buttonCancel);
-            this.groupBox3.Controls.Add(this.labelTotal);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(602, 13);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(355, 513);
-            this.groupBox3.TabIndex = 88;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
-            // 
-            // pictureBoxBIG
-            // 
-            this.pictureBoxBIG.Location = new System.Drawing.Point(6, 37);
-            this.pictureBoxBIG.Name = "pictureBoxBIG";
-            this.pictureBoxBIG.Size = new System.Drawing.Size(284, 236);
-            this.pictureBoxBIG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxBIG.TabIndex = 74;
-            this.pictureBoxBIG.TabStop = false;
+            this.groupBox1.Text = "Items";
             // 
             // pictureBoxIpad
             // 
@@ -435,6 +348,90 @@
             this.SleepingBagsPctBox.TabStop = false;
             this.SleepingBagsPctBox.Click += new System.EventHandler(this.pictureBox30_Click);
             // 
+            // orderBtn
+            // 
+            this.orderBtn.Location = new System.Drawing.Point(92, 481);
+            this.orderBtn.Name = "orderBtn";
+            this.orderBtn.Size = new System.Drawing.Size(75, 23);
+            this.orderBtn.TabIndex = 85;
+            this.orderBtn.Text = "order";
+            this.orderBtn.UseVisualStyleBackColor = true;
+            this.orderBtn.Click += new System.EventHandler(this.orderBtn_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(64, 449);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 84;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 449);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 83;
+            this.label1.Text = "Quantity:";
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(167, 466);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 86;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.pictureBoxBIG);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.orderBtn);
+            this.groupBox2.Controls.Add(this.labelCost);
+            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.labelDeposit);
+            this.groupBox2.Controls.Add(this.labelProduct);
+            this.groupBox2.Controls.Add(this.labelID);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Location = new System.Drawing.Point(272, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(296, 513);
+            this.groupBox2.TabIndex = 87;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Selection";
+            // 
+            // pictureBoxBIG
+            // 
+            this.pictureBoxBIG.Location = new System.Drawing.Point(6, 37);
+            this.pictureBoxBIG.Name = "pictureBoxBIG";
+            this.pictureBoxBIG.Size = new System.Drawing.Size(284, 236);
+            this.pictureBoxBIG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxBIG.TabIndex = 74;
+            this.pictureBoxBIG.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.BalanceLabel);
+            this.groupBox3.Controls.Add(this.RentList);
+            this.groupBox3.Controls.Add(this.buttonCancel);
+            this.groupBox3.Controls.Add(this.labelTotal);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Location = new System.Drawing.Point(602, 13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(355, 513);
+            this.groupBox3.TabIndex = 88;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Cart (1 per time)";
+            // 
             // BalanceLabel
             // 
             this.BalanceLabel.AutoSize = true;
@@ -456,16 +453,9 @@
             this.Name = "Form1";
             this.Text = "Rental";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBIG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIpad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoPro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IPhoneChargerPctBox)).EndInit();
@@ -475,6 +465,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.FlashlightpctBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TentPctBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SleepingBagsPctBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBIG)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }

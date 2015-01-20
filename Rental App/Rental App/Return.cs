@@ -31,8 +31,8 @@ namespace Rental_App
             reader = new RFID();
             reader.Attach += new AttachEventHandler(rfid_Attach);
             reader.Detach += new DetachEventHandler(rfid_Detach);
-            reader.RFIDTag += new TagEventHandler(rfid_Tag);
-            reader.RFIDTagLost += new TagEventHandler(rfid_TagLost);
+            reader.Tag += new TagEventHandler(rfid_Tag);
+            reader.TagLost += new TagEventHandler(rfid_TagLost);
             reader.Antenna = true;
             reader.open();
 
