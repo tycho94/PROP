@@ -170,6 +170,7 @@
             this.buttonReturn.TabIndex = 34;
             this.buttonReturn.Text = "Return Goods";
             this.buttonReturn.UseVisualStyleBackColor = true;
+            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
             // label10
             // 

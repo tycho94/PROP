@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Phidgets;
+using Phidgets.Events;
+
 
 namespace Rental_App
 {
@@ -15,7 +18,15 @@ namespace Rental_App
         double totalCost = 0;
         private Items rent;
         double totalPrice = 0;
-        
+        int balance = 0;
+        int shopID = 0;
+
+        bool isReturn = false;
+
+        public string RFID = "";
+        RFID reader;
+
+
         object O;
 
         DatabaseConnection data = new DatabaseConnection();
@@ -25,8 +36,20 @@ namespace Rental_App
         public Form1()
         {
             InitializeComponent();
+
+            reader = new RFID();
+            reader.Attach += new AttachEventHandler(rfid_Attach);
+            reader.Detach += new DetachEventHandler(rfid_Detach);
+            reader.RFIDTag += new TagEventHandler(rfid_Tag);
+            reader.RFIDTagLost += new TagEventHandler(rfid_TagLost);
+            reader.Antenna = true;
+            reader.open();
+
             rent = new Items("rent");
             CreateDummyData();
+            //balance = Convert.ToInt32(data.loadBalance(RFID));
+            shopID = 10;
+            
     
         }
 
@@ -69,8 +92,8 @@ namespace Rental_App
             labelProduct.Text = "Product: " + product.TotalLeft.ToString();
             RentList.Items.Add(product.AsString() + ", order: " + banyak + ", total: " + totalCost);
             totalPrice = totalPrice + totalCost;
-            
 
+            RentList.Items.Clear();
             labelTotal.Text = "Total cost: " + totalPrice;
         }
 
@@ -142,7 +165,63 @@ namespace Rental_App
 
         private void button3_Click(object sender, EventArgs e)
         {
+            DateTime myDate = DateTime.Now;
+            string dateNow = myDate.ToString("yyyy-MM-dd");
+            DateTime returnDate = DateTime.Now.AddDays(1);
+            string dateReturn = returnDate.ToString("yyyy-MM-dd");
 
+            double banyak = Convert.ToDouble(numericUpDown1.Value);
+            double harga;
+            int loadedBalance = Convert.ToInt32(data.loadBalance(RFID));
+            if (data.insert(product.iD, shopID, RFID, dateNow, dateReturn, Convert.ToInt32(product.Deposit)))
+            {
+                if (data.Stocks(product.TotalLeft + Convert.ToInt32(banyak), "-", Convert.ToInt32(banyak), product.iD) && data.Balance(loadedBalance, "-", Convert.ToInt32(totalPrice), RFID))
+                {
+                    harga = loadedBalance - totalPrice;
+                    //data.loadBalance(Convert.ToInt32(RFID));
+                    MessageBox.Show(harga.ToString());
+                }
+            }
+            
+        }
+
+        // RFID
+        void rfid_Tag(object sender, TagEventArgs e)
+        {
+            if (!isReturn)
+            {
+                RFID = e.Tag;
+                reader.LED = true;       // light on
+                balance = Convert.ToInt32(data.loadBalance(RFID));
+                MessageBox.Show("Current Credit:" + balance.ToString());
+            }
+        }
+
+        void rfid_TagLost(object sender, TagEventArgs e)
+        {
+            reader.LED = false;      // light off
+        }
+
+        void rfid_Detach(object sender, DetachEventArgs e)
+        {
+            //lblAttached.Text = "Not Attached";
+        }
+
+        void rfid_Attach(object sender, AttachEventArgs e)
+        {
+            Phidgets.RFID phid = (Phidgets.RFID)sender;
+            //lblAttached.Text = "Attached: " + phid.Name;
+
+        }
+
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            isReturn = true;
+            Return form2 = new Return();
+            this.Hide();
+            form2.Show();
+            this.Close();
+            
         }
     }
 }
