@@ -32,3 +32,10 @@ D:\Project\Temp\Rental App\Rental App\obj\Debug\Rental_App.Return.resources
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\bin\Debug\Rental App.exe.config
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental App.exe
 \\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental App.pdb
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental App.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental_App.Form1.resources
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental_App.Properties.Resources.resources
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental_App.Return.resources
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\obj\Debug\Rental App.csproj.GenerateResource.Cache
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\bin\Debug\Rental App.exe
+\\vmware-host\Shared Folders\Desktop\Rental App\Rental App\bin\Debug\Rental App.pdb

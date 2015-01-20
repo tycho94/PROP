@@ -48,7 +48,7 @@
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(75, 23);
             this.btnReturn.TabIndex = 1;
-            this.btnReturn.Text = "button1";
+            this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = true;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
@@ -57,9 +57,8 @@
             this.lblShow.AutoSize = true;
             this.lblShow.Location = new System.Drawing.Point(55, 224);
             this.lblShow.Name = "lblShow";
-            this.lblShow.Size = new System.Drawing.Size(35, 13);
+            this.lblShow.Size = new System.Drawing.Size(0, 13);
             this.lblShow.TabIndex = 2;
-            this.lblShow.Text = "label1";
             // 
             // Return
             // 
@@ -71,6 +70,9 @@
             this.Controls.Add(this.lbItems);
             this.Name = "Return";
             this.Text = "Return";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Return_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Return_FormClosed);
+            this.Load += new System.EventHandler(this.Return_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
