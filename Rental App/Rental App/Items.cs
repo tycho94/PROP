@@ -33,11 +33,11 @@ namespace Rental_App
             return null;
         }
 
-        public bool AddItem(string nm, double pr, double dp,string img, int Left, int id)
+        public bool AddItem(string nm, double pr, double dp, int Left, int id)
         {
             if (GetItems(nm) == null)
             {
-                this.itemList.Add(new Item(nm, pr, dp, img, Left, id));
+                this.itemList.Add(new Item(nm, pr, dp, Left, id));
                 return true;
 
             }
