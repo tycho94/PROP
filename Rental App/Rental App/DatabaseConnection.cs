@@ -69,9 +69,11 @@ namespace Rental_App
                   var nama = rdr["RENTAL_NAME"];
                   var rcst = rdr["RENTAL_PRICE"];
                   var rdpst = rdr["RENTAL_DEPOSIT"];
+                  var img = rdr["IMAGE"];
                   var  stock = rdr["RENTAL_STOCK"];
                   var id = rdr["RENTAL_ITEM_ID"];
-                  list.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToInt32(stock), Convert.ToInt32(id)));
+
+                  list.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst),Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
               }
 
               rdr.Close();
@@ -93,9 +95,10 @@ namespace Rental_App
                   var nama = rdr["RENTAL_NAME"];
                   var rcst = rdr["RENTAL_PRICE"];
                   var rdpst = rdr["RENTAL_DEPOSIT"];
+                  var img = rdr["IMAGE"];
                   var stock = rdr["RENTAL_STOCK"];
                   var id = rdr["RENTAL_ITEM_ID"];
-                  result.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToInt32(stock), Convert.ToInt32(id)));
+                  result.Add(new Item(Convert.ToString(nama), Convert.ToDouble(rcst), Convert.ToDouble(rdpst), Convert.ToString(img), Convert.ToInt32(stock), Convert.ToInt32(id)));
               }
 
               rdr.Close();
@@ -164,7 +167,7 @@ namespace Rental_App
               }
           }
 
-          public Boolean Balance(int balance, string operation, int price, string Vid) 
+          public Boolean Balance(double balance, string operation, double price, string Vid) 
           {
               string updateBalance = "";
               try
