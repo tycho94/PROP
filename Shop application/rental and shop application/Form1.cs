@@ -90,26 +90,34 @@ namespace Shop_application
             string dateNow = myDate.ToString("yyyy-MM-dd");
             DateTime Time = DateTime.Now;
             string time = Time.ToString("H:mm:ss");
-            double banyak = Convert.ToDouble(numericUpDown1.Value);
-            double harga;
+            double count = Convert.ToDouble(numericUpDown1.Value);
+            double newbalance;
             int loadedBalance = 0;
             if (boughtList.Items.Count > 0)
             {
-                data = new DatabaseConnection();
-                loadedBalance = Convert.ToInt32(data.loadBalance(tag));
-                data = new DatabaseConnection();
-                if (data.Insert(product.ID, shopID, tag, time, dateNow, banyak))
+                try
                 {
                     data = new DatabaseConnection();
-                    if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(banyak), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), tag))
-                    {
-                        harga = loadedBalance - totalCost;
-                        MessageBox.Show("Kebeli");
-                        data = new DatabaseConnection();
-                        BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
-
-                    }
+                    loadedBalance = Convert.ToInt32(data.loadBalance(tag));
                 }
+                catch
+                {
+                    MessageBox.Show("Scan RFID first.");
+                }
+                    data = new DatabaseConnection();
+                    if (data.Insert(product.ID, shopID, tag, time, dateNow, count))
+                    {
+                        data = new DatabaseConnection();
+                        if (data.Stocks(product.TotalLeft, "-", Convert.ToInt32(count), product.ID) && data.Balance(loadedBalance, Convert.ToInt32(product.Price), tag))
+                        {
+                            newbalance = loadedBalance - totalCost;
+                            MessageBox.Show("Bought.");
+                            data = new DatabaseConnection();
+                            BalanceLabel.Text = "Current Balance: " + data.loadBalance(tag).ToString();
+
+                        }
+                    }
+
             }
             else
             {
@@ -121,118 +129,94 @@ namespace Shop_application
         {
             LabelLoad("Hamburger");
         }
-
         private void nuggetPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Nugget");
         }
-
         private void CorndogPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Corn Dog");
         }
-
         private void HotdogPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Hotdog");
         }
-
         private void pizzaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Pizza");
         }
-
         private void FriesPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("French Fries");
         }
-
         private void DurumPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Durum");
         }
-
         private void TacoPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Taco");
         }
-
         private void LoempiaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Lumpia");
         }
-
         private void NachosPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Nachos");
         }
-
         private void ChickenPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Kip Stukken");
         }
-
         private void KibbelingPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Kibbeling");
         }
-
-
         private void ColaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Coca Cola");
         }
-
         private void FantaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Fanta");
         }
-
         private void SpritePctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Sprite");
         }
-
         private void ColaZeroPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Cola-Zero");
         }
-
         private void PepsiPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Pepsi");
         }
-
         private void MtnDewPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Mountain Dew");
         }
-
         private void BavariaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Bavaria");
         }
-
         private void MonsterPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Monster");
         }
-
         private void SpaBlauwPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Spa Water");
         }
-
         private void JaegerMeisterPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Jaeger");
         }
-
         private void JackDPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Jack Daniels");
         }
-
         private void AbsoluteVodkaPctBox_Click(object sender, EventArgs e)
         {
             LabelLoad("Vodka");
@@ -240,33 +224,21 @@ namespace Shop_application
 
         private void orderBtn_Click(object sender, EventArgs e)
         {
-            int banyak = Convert.ToInt32(numericUpDown1.Value);
+            int count = Convert.ToInt32(numericUpDown1.Value);
             if (numericUpDown1.Value > 0)
             {
                 try
                 {
-                    totalCost = product.Price * banyak;
-
+                    totalCost = product.Price * count;
+                    
                     bought.Add(product);
-                    product.updateStock(Convert.ToInt32(banyak), "kurang");
-
-                    //foreach (Item x in bought)
-                    //{
-                    //    string nama;
-                    //    int jumlah;
-                    //    int totalHarga;
-
+                    product.updateStock(Convert.ToInt32(count), "minus");
 
                     labelProduct.Text = "Product: " + product.TotalLeft.ToString();
-                    boughtList.Items.Add(product.AsString() + ", order: " + banyak + ", total: " + totalCost);
+                    boughtList.Items.Add(product.AsString() + ", order: " + count + ", total: " + String.Format("{0:0.00}", totalCost));
                     totalPrice = totalPrice + totalCost;
-                    //}
+                    labelTotal.Text = "Total cost: " + String.Format("{0:0.00}", totalPrice);
 
-
-
-                    labelTotal.Text = "Total cost: " + totalPrice;
-                    //boughtList.Items.Add(product.AsString()+", order: "+banyak+", total: "+totalCost);
-                    //    boughtList.Items.Add("Product: " + pName + ", Harga:");
                 }
                 catch
                 {
@@ -284,7 +256,7 @@ namespace Shop_application
             int selected;
             double selectedPrice;
 
-            double banyak = Convert.ToDouble(numericUpDown1.Value);
+            double count = Convert.ToDouble(numericUpDown1.Value);
 
             if (this.boughtList.SelectedIndex >= 0)
             {
@@ -294,9 +266,9 @@ namespace Shop_application
                 bought.RemoveAt(selected);
                 boughtList.Items.RemoveAt(selected);
 
-                totalPrice = totalPrice - selectedPrice * banyak;
+                totalPrice = totalPrice - selectedPrice * count;
 
-                product.updateStock(Convert.ToInt32(banyak), "tambah");
+                product.updateStock(Convert.ToInt32(count), "add");
 
                 labelTotal.Text = "Total cost: " + totalPrice;
                 labelProduct.Text = "Product: " + product.TotalLeft.ToString();
@@ -325,13 +297,13 @@ namespace Shop_application
                 }
                 else
                 {
-                    MessageBox.Show("inputu.");
+                    MessageBox.Show("We don't serve this.");
                 }
             }
 
             else
             {
-                MessageBox.Show("we are deeply sorry, we don't have that menu.");
+                MessageBox.Show("We don't serve this.");
             }
 
         }

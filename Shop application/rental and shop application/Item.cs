@@ -52,19 +52,19 @@ namespace Shop_application
 
         public string AsString() 
         {
-            string s = this.name + ", price: " + price + ", left in stock: " + totalLeft;
+            string s = this.name + ", price: " + String.Format("{0:0.00}", price) + ", left in stock: " + totalLeft;
             return s;
         }
 
         public void updateStock(int banyak, string op)
         {
 
-            if (op == "tambah")
+            if (op == "add")
             {
                 totalLeft = totalLeft + banyak;
             }
 
-            else if (op == "kurang")
+            else if (op == "minus")
             {
                 totalLeft = totalLeft - banyak;
             }
