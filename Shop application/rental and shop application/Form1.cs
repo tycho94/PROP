@@ -93,7 +93,7 @@ namespace Shop_application
                     data = new DatabaseConnection();
                     loadedBalance = data.loadBalance(tag);
                     data = new DatabaseConnection();
-                    if (loadedBalance < product.Price)
+                    if (loadedBalance < product.Price*count)
                     {
                         MessageBox.Show("Need more money");
                     }
