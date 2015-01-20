@@ -15,7 +15,7 @@ namespace Campsite_application
     public partial class Form1 : Form
     {
         private RFID Reader;
-        DatabaseConnection data = new DatabaseConnection();
+        DatabaseConnection data;
         string tag;
         int spot;
         string ftag;
@@ -39,18 +39,21 @@ namespace Campsite_application
                 MessageBox.Show("RFID reader not found. \nExiting program.");
                 Environment.Exit(1);
             }
-
+            data = new DatabaseConnection();
             lbFreeSites.DataSource = data.ListSites();
         }
 
 
         private void reserveBtn_Click(object sender, EventArgs e)
         {
+            data = new DatabaseConnection();
             spot = Convert.ToInt32(lbFreeSites.SelectedItem);
             if (data.Reserve(tag, spot))
             {
                 lblStatus.Text = "Succesfull reservation";
                 lblSite.Text = "Site number: " + spot.ToString();
+                data = new DatabaseConnection();
+                lbFreeSites.DataSource = data.ListSites();
             }
             else
             {
@@ -63,12 +66,17 @@ namespace Campsite_application
         private void Scan(object sender, TagEventArgs e)
         {
             tag = e.Tag;
+            data = new DatabaseConnection();
             lblName.Text = "Name: " + data.GetName(e.Tag);
+            data = new DatabaseConnection();
             lblMoney.Text = "Money: " + data.GetMoney(e.Tag).ToString();
             lblSite.Visible = true;
+            data = new DatabaseConnection();
             if (data.GetSite(e.Tag) != -1)
             {
+                data = new DatabaseConnection();
                 lblSite.Text = "Site number: " + data.GetSite(e.Tag).ToString();
+                data = new DatabaseConnection();
                 lblFirst.Text = "Name: " + data.GetName(e.Tag).ToString();
                 panelcampspot.Visible = true;
             }
@@ -77,6 +85,7 @@ namespace Campsite_application
                 lblSite.Visible = false;
                 if (a == true)
                 {
+                    data = new DatabaseConnection();
                     lblSecond.Text = "Name: " + data.GetName(e.Tag).ToString();
                 }
                 else
@@ -87,6 +96,7 @@ namespace Campsite_application
 
         private void lbFreeSites_SelectedIndexChanged(object sender, EventArgs e)
         {
+            data = new DatabaseConnection();
             lblCost.Text = "Cost per night: " + Convert.ToString(data.GetPrice(Convert.ToInt32(lbFreeSites.SelectedItem)));
             campsitenr(Convert.ToInt32(lbFreeSites.SelectedItem));
         }
@@ -142,6 +152,7 @@ namespace Campsite_application
             stag = tag;
             btnContinue.Visible = true;
             btnAddDelete.Visible = false;
+            data = new DatabaseConnection();
             if (data.SetSite(ftag, stag))
                 lblStatus.Text = "Succesfully added to campspot";
             else

@@ -14,7 +14,7 @@ namespace BuyTicket
 {
     public partial class Form1 : Form
     {
-        DatabaseConnection data = new DatabaseConnection();
+        DatabaseConnection data;
         private RFID Reader;
         string tag;
         public Form1()
@@ -37,6 +37,7 @@ namespace BuyTicket
 
         private void button1_Click(object sender, EventArgs e)
         {
+            data = new DatabaseConnection();
             if (data.AddVisitor(tbFName.Text, tbLName.Text, tbMail.Text, DateTime.Parse(tbDOB.Text), Convert.ToInt32(tbPhone.Text), tbAddress.Text, tbCity.Text, tbCountry.Text, tbPostal.Text, Convert.ToInt32(tbAccount.Text), tag))
                 Status.Text = "Succesfully added person";
             else

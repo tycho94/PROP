@@ -46,6 +46,7 @@ namespace entrance_application
                 nbr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nbr;
         }
 
@@ -60,6 +61,7 @@ namespace entrance_application
                     n = true;
             }
             rdr.Close();
+            con.Close();
             return n;
         }
 
@@ -74,6 +76,7 @@ namespace entrance_application
                 name = rdr.GetString(0);
             }
             rdr.Close();
+            con.Close();
             return name;
         }
 
@@ -83,10 +86,6 @@ namespace entrance_application
             cmd.Parameters.AddWithValue("@STATUS", status);
             cmd.Parameters.AddWithValue("@RFID", tag);
             cmd.ExecuteNonQuery();
-
-        }
-        public void Disconnect()
-        {
             con.Close();
         }
     }

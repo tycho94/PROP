@@ -34,14 +34,6 @@ namespace Exit_app
             con.Open();
         }
 
-        public String Version()
-        {
-            string stm = "SELECT VERSION()";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            string version = "Connected to database. Version: " + Convert.ToString(cmd.ExecuteScalar());
-            return version;
-        }
-
         public Int32 GetBalance(string tag)
         {
             int nbr = 0;
@@ -53,6 +45,7 @@ namespace Exit_app
                 nbr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nbr;
         }
 
@@ -67,6 +60,7 @@ namespace Exit_app
                 nbr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nbr;
         }
 
@@ -91,9 +85,15 @@ namespace Exit_app
             }
 
             if (rented < 0)
+            {
+                con.Close();
                 return false;
+            }
             else
+            {
+                con.Close();
                 return true;
+            }
         }
 
         public void leaving(string tag)
@@ -101,9 +101,6 @@ namespace Exit_app
             cmd = new MySqlCommand(leave, con);
             cmd.Parameters.AddWithValue("@RFID", tag);
             cmd.ExecuteNonQuery();
-        }
-        public void Disconnect()
-        {
             con.Close();
         }
     }

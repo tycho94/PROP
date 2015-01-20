@@ -29,8 +29,8 @@ namespace BuyTicket
 
         public Boolean AddVisitor(string fname, string lname, string mail, DateTime dob, int phone, string street, string city, string country, string postal, int account, string tag)
         {
-            //try
-            //{
+            try
+            {
                 cmd = new MySqlCommand(addvisitor, con);
                 cmd.Parameters.AddWithValue("@LNAME", lname);
                 cmd.Parameters.AddWithValue("@FNAME", fname);
@@ -44,12 +44,13 @@ namespace BuyTicket
                 cmd.Parameters.AddWithValue("@ACCOUNT", account);
                 cmd.Parameters.AddWithValue("@RFID", tag);
                 cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 

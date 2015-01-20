@@ -122,7 +122,7 @@
             this.Controls.Add(this.VisitorsList);
             this.Controls.Add(this.MoneyLogList);
             this.Name = "Form1";
-            this.Text = "Admin App";
+            this.Text = "Admin panel";
             this.ResumeLayout(false);
             this.PerformLayout();
 

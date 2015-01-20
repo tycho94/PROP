@@ -15,8 +15,7 @@ namespace Exit_app
     public partial class Form1 : Form
     {
         private RFID Reader;
-        //ExitClient current = new ExitClient("2800b39b49");
-        DatabaseConnection data = new DatabaseConnection();
+        DatabaseConnection data;
 
         public Form1()
         {
@@ -28,7 +27,6 @@ namespace Exit_app
             try
             {
                 Reader = new RFID();
-                //Reader.Attach += new AttachEventHandler(ReaderAttached);
                 Reader.open();
                 Reader.waitForAttachment(3000);
                 Reader.Antenna = true;
@@ -46,10 +44,12 @@ namespace Exit_app
 
         public void Leaving(object sender, TagEventArgs e)
         {
+            data = new DatabaseConnection();
             if (data.GetStatus(e.Tag) == 1)
             {
+                data = new DatabaseConnection();
                 moneylbl.Text = "Money left on card: " + data.GetBalance(e.Tag).ToString();
-
+                data = new DatabaseConnection();
                 if (data.GetRented(e.Tag) == true)
                 {
                     label1.Visible = false;
@@ -63,15 +63,20 @@ namespace Exit_app
                     label2.Visible = true;
                     moneylbl.Visible = true;
                     label3.Text = "";
+                    data = new DatabaseConnection();
                     data.leaving(e.Tag);
                 }
             }
-            else if (data.GetStatus(e.Tag) == 0)
+            else
             {
-                label1.Visible = false;
-                label2.Visible = false;
-                moneylbl.Visible = false;
-                label3.Text = "Something went wrong, please contact support.";
+                data = new DatabaseConnection();
+                if (data.GetStatus(e.Tag) == 0)
+                {
+                    label1.Visible = false;
+                    label2.Visible = false;
+                    moneylbl.Visible = false;
+                    label3.Text = "Something went wrong, please contact support.";
+                }
             }
         }
     }

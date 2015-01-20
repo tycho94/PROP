@@ -31,20 +31,6 @@ namespace Role_assigner
             con.Open();
         }
 
-        public String Version()
-        {
-            string stm = "SELECT VERSION()";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            string version = "Connected to database. Version: " + Convert.ToString(cmd.ExecuteScalar());
-            return version;
-        }
-
-
-        public void Disconnect()
-        {
-            con.Close();
-        }
-
         public List<String> LoadEmployees()
         {
             list = new List<String>();
@@ -56,37 +42,26 @@ namespace Role_assigner
                 list.Add(rdr.GetString(0));
             }
             rdr.Close();
+            con.Close();
             return list;
         }
-
-        /*public List<String> LoadRoles()
-        {
-            list = new List<String>();
-            cmd = new MySqlCommand("SELECT DISTINCT JOB FROM EMPLOYEE", con);
-            rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                list.Add(rdr.GetString(0));
-            }
-            rdr.Close();
-            return list;
-
-        }*/
 
         public Boolean SetRoles(string name, string role)
         {
             try
             {
                 cmd = new MySqlCommand(updateEmployee, con);
-
                 cmd.Parameters.AddWithValue("@NAME", name);
                 cmd.Parameters.AddWithValue("@ROLE", role);
                 cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
             }
             catch
-            { return false; }
+            {
+                con.Close();
+                return false;
+            }
         }
 
         public List<String> LoadEmpInfo(string name)
@@ -107,6 +82,7 @@ namespace Role_assigner
             }
 
             rdr.Close();
+            con.Close();
             return list;
         }
 

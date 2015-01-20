@@ -38,6 +38,7 @@ namespace Campsite_application
 
         private string maxspots = "SELECT COUNT(CAMPSPOT) FROM VISITOR WHERE CAMPSPOT = @SPOTID";
 
+
         MySqlConnection con;
         MySqlCommand cmd;
         MySqlDataReader rdr;
@@ -61,7 +62,7 @@ namespace Campsite_application
                     b = rdr.GetString(0);
                 }
                 rdr.Close();
-
+                con.Close();
                 return false;
             }
             catch
@@ -83,12 +84,15 @@ namespace Campsite_application
                         cmd.Parameters.AddWithValue("@RFID", tag);
                         cmd.Parameters.AddWithValue("@SPOTID", spotID);
                         cmd.ExecuteNonQuery();
+                        con.Close();
                         return true;
                     }
+                    con.Close();
                     return false;
                 }
                 catch
                 {
+                    con.Close();
                     return false;
                 }
             }
@@ -123,13 +127,18 @@ namespace Campsite_application
                     cmd.Parameters.AddWithValue("@SPOTID", a);
                     cmd.Parameters.AddWithValue("@RFID", stag);
                     cmd.ExecuteNonQuery();
+                    con.Close();
                     return true;
                 }
                 else
+                {
+                    con.Close();
                     return false;
+                }
             }
             catch
             {
+                con.Close();
                 return false;
             }
         }
@@ -145,6 +154,7 @@ namespace Campsite_application
                 list.Add(rdr.GetInt32(0));
             }
             rdr.Close();
+            con.Close();
             return list;
         }
 
@@ -159,10 +169,11 @@ namespace Campsite_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
-        public string GetName(string tag)
+        public String GetName(string tag)
         {
             string name = "";
             cmd = new MySqlCommand(this.name, con);
@@ -173,6 +184,7 @@ namespace Campsite_application
                 name = rdr.GetString(0) + " " + rdr.GetString(1);
             }
             rdr.Close();
+            con.Close();
             return name;
         }
 
@@ -187,6 +199,7 @@ namespace Campsite_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
@@ -203,21 +216,16 @@ namespace Campsite_application
                     nr = rdr.GetInt32(0);
                 }
                 rdr.Close();
+                con.Close();
                 return nr;
             }
             catch
             {
                 rdr.Close();
+                con.Close();
                 return -1;
             }
 
-        }
-
-
-
-        public void Disconnect()
-        {
-            con.Close();
         }
     }
 }

@@ -36,7 +36,6 @@ namespace Admin_application
         MySqlCommand cmd;
         MySqlDataReader rdr;
         List<string> list;
-        string a;
 
         public DatabaseConnection()
         {
@@ -55,6 +54,7 @@ namespace Admin_application
                 list.Add(rdr.GetString(0) + "\t" + rdr.GetString(1));
             }
             rdr.Close();
+            con.Close();
             return list;
         }
 
@@ -68,6 +68,7 @@ namespace Admin_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
@@ -81,6 +82,7 @@ namespace Admin_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
@@ -94,6 +96,7 @@ namespace Admin_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
@@ -107,7 +110,7 @@ namespace Admin_application
                 list.Add((rdr.GetString(0) + "\tEarnings: " + rdr.GetInt32(1).ToString()));
             }
             rdr.Close();
-
+            con.Close();
             return list;
         }
 
@@ -121,6 +124,7 @@ namespace Admin_application
                 nr = rdr.GetInt32(0);
             }
             rdr.Close();
+            con.Close();
             return nr;
         }
 
@@ -134,12 +138,8 @@ namespace Admin_application
                 list.Add((rdr.GetString(0)+ "\tStock: " + rdr.GetString(1)));
             }
             rdr.Close();
-            return list;
-        }
-
-        public void Disconnect()
-        {
             con.Close();
+            return list;
         }
     }
 }

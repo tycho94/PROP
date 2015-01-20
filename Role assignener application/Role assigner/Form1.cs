@@ -14,28 +14,27 @@ namespace Role_assigner
     public partial class Form1 : Form
     {
         List<String> list = new List<String>();
-
-        DatabaseConnection data = new DatabaseConnection();
-
+        DatabaseConnection data;
 
         public Form1()
         {
             InitializeComponent();
+            statusStrip1.SizingGrip = false;
+            data = new DatabaseConnection();
             list = data.LoadEmployees();
             for (int i = 0; i < list.Count(); i++)
             { empNameDropdown.Items.Add(list[i]); }
-            //list = data.LoadRoles();
             roleDropdown.Items.Add("Bouncer");
             roleDropdown.Items.Add("Cashier");
             roleDropdown.Items.Add("Manager");
             roleDropdown.Items.Add("Owner");
-            Status.Text = data.Version();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
+                data = new DatabaseConnection();
                 if (data.SetRoles((((String)empNameDropdown.SelectedItem).ToString()), (((String)roleDropdown.SelectedItem).ToString())))
                 {
                     Status.Text = "Role set!";
@@ -53,12 +52,8 @@ namespace Role_assigner
 
         private void empNrDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*nameLabel.Text = "Employee #: "  + emplist[empNameDropdown.SelectedIndex].EmpNr;
-            ageLabel.Text = "Age: " + emplist[empNameDropdown.SelectedIndex].Age;
-            roleLabel.Text = "Current role: " + emplist[empNameDropdown.SelectedIndex].Role;*/
+            data = new DatabaseConnection();
             list = (data.LoadEmpInfo(((String)empNameDropdown.SelectedItem).ToString()));
-
-            //listBox1.DataSource = list;
             lbEmpNr.Text = "Employee #: " + list[0];
             string trim = "DOB: " + list[1];
             lbDob.Text = trim.Trim('0', ':');
