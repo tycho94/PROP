@@ -17,6 +17,7 @@ namespace BuyTicket
         DatabaseConnection data;
         private RFID Reader;
         string tag;
+        bool a;
         public Form1()
         {
             InitializeComponent();
@@ -31,17 +32,25 @@ namespace BuyTicket
 
         private void NewTag(object sender, TagEventArgs e)
         {
-            tag = "abcdefg";
-            //tag = e.Tag;
+            tag = e.Tag;
+            a = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            data = new DatabaseConnection();
-            if (data.AddVisitor(tbFName.Text, tbLName.Text, tbMail.Text, DateTime.Parse(tbDOB.Text), Convert.ToInt32(tbPhone.Text), tbAddress.Text, tbCity.Text, tbCountry.Text, tbPostal.Text, Convert.ToInt32(tbAccount.Text), tag))
-                Status.Text = "Succesfully added person";
+            if (a == true)
+            {
+                data = new DatabaseConnection();
+                if (data.AddVisitor(tbFName.Text, tbLName.Text, tbMail.Text, DateTime.Parse(tbDOB.Text), Convert.ToInt32(tbPhone.Text), tbAddress.Text, tbCity.Text, tbCountry.Text, tbPostal.Text, Convert.ToInt32(tbAccount.Text), tag))
+                    Status.Text = "Succesfully added person";
+                else
+                    Status.Text = "Error adding person";
+                a = false;
+            }
             else
-                Status.Text = "Error adding person";
+            {
+                MessageBox.Show("Scan RFID TAG first");
+            }
         }
     }
 }
